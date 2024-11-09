@@ -1,0 +1,114 @@
+/* Login Component Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    flex-direction: column;
+    text-align: center;
+}
+
+.login-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.login-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #ff4d4d;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-field:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.login-button {
+    padding: 10px;
+    background-color: #28a3a7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-button:hover {
+    background-color: #21885f;
+}
+
+.register-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+}
+
+.register-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+/* Register Page Styles */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f5f5f5; /* Light gray background */
+    flex-direction: column;
+    text-align: center;
+}
+
+.register-title {
+    font-size: 24px; /* Title font size */
+    color: #333; /* Title color */
+    margin-bottom: 20px; /* Space below title */
+}
+
+.error-message {
+    color: #ff4d4d; /* Error message color */
+    margin-bottom: 15px; /* Space below error message */
+}
+
+.register-form {
+    background-color: #fff; /* White background */
+    padding: 30px; /* Padding around form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    width: 300px; /* Fixed width for the form */
+}
+
+.submit-button {
+    padding: 10px; /* Padding inside the button */
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+}
+
+.submit-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}

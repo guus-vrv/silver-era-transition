@@ -1,0 +1,152 @@
+.discover-profile-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 2rem;
+  }
+  
+  .top-container {
+    flex: 0 0 30%; /* Takes up 30% of the height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .profile-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    text-align: center;
+    position: relative; /* For absolute positioning of the save icon */
+  }
+  
+  .profile-picture {
+    border-radius: 50%; /* Circular profile picture */
+    width: 100px; /* Fixed size for profile picture */
+    height: 100px; /* Fixed size for profile picture */
+  }
+  
+  .user-name {
+    margin: 10px 0;
+    font-size: 24px;
+  }
+  
+  .bio {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  
+  .save-profile {
+    position: absolute; /* Position the save icon in the top right */
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .bottom-container {
+    flex: 0 0 70%; /* Takes up 70% of the height */
+    display: flex;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .left-box {
+    flex: 0 0 70%; /* 70% width */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .right-box {
+    flex: 0 0 30%; /* 30% width */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .info-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .info-box p {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .invite-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .invite-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .invite-button,
+  .skip-button,
+  .edit-filters {
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .invite-button:hover,
+  .edit-filters:hover {
+    background-color: #0056b3;
+  }
+
+  
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.filter-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+
+.skip-button {
+  background-color: #ff5e00;
+}
+
+.skip-button:hover {
+  background-color: #ff5e00c0;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 1rem;
+}
+

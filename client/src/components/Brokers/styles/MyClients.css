@@ -1,0 +1,95 @@
+/* MyClients.css */
+
+/* Dashboard Styles */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Table Container */
+.table-container {
+  width: 100%; /* Full width */
+  max-height: 40vh; /* Limit height to 40% of the viewport */
+  overflow-y: auto; /* Allow scrolling */
+  border-radius: 10px; /* Slight curvature */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a shadow */
+}
+
+/* Table Styles */
+.clients-table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapse borders */
+}
+
+.clients-table thead {
+  background-color: #385454; /* Green header */
+  color: white; /* Text color */
+  border-radius: 10px 10px 0 0; /* Curved top corners */
+}
+
+.table-head-room,
+.table-head-phase,
+.table-head-created,
+.table-head-updated,
+.table-head-business-space,
+.table-head-prospect,
+.table-head-location,
+.table-head-revenue {
+  padding: 12px; /* Padding for cells */
+  text-align: left; /* Left align text */
+}
+
+.rooms:hover {
+  background-color: #e0e0e0; /* Highlight row on hover */
+}
+
+.room-cell,
+.phase-cell,
+.created-cell,
+.updated-cell,
+.business-space-cell,
+.prospect-cell,
+.location-cell,
+.revenue-cell {
+  padding: 12px; /* Padding for cells */
+  text-align: left; /* Left align text */
+  border: 1px solid #ccc; /* Adds border to table cells */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Zebra Striping */
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Zebra striping */
+}
+
+/* Optional: Add hover effect for table rows */
+.rooms:hover .room-cell,
+.rooms:hover .phase-cell,
+.rooms:hover .created-cell,
+.rooms:hover .updated-cell,
+.rooms:hover .business-space-cell,
+.rooms:hover .prospect-cell,
+.rooms:hover .location-cell,
+.rooms:hover .revenue-cell {
+  background-color: #8db593; /* Light grey background for cells on row hover */
+}
+
+.add-room-button {
+  padding: 10px 20px; /* Padding for the button */
+  background-color: #d0a542; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Slight curvature */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  width: 5rem;
+  margin-top: 2rem;
+}
+
+.add-room-button:hover {
+  background-color: #b49936; /* Darker shade on hover */
+}

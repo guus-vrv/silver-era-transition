@@ -1,0 +1,82 @@
+/* RoomDetails.css */
+
+.room-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 20px; /* Space below tabs */
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  cursor: pointer;
+}
+
+.button.active {
+  background-color: #385454;; /* Darker green for active tab */
+}
+
+.progress-marker {
+  margin-bottom: 20px; /* Space below progress marker */
+  width: 100%; /* Full width */
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0; /* Light gray */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.progress {
+  height: 20px; /* Height of progress bar */
+  background-color: #4CAF50; /* Green color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.left-section {
+  flex: 0 0 70%; /* Left section takes 70% width */
+  display: flex;
+  flex-direction: column; /* Stack boxes vertically */
+  padding-right: 10px; /* Space between left and right sections */
+}
+
+.top-boxes {
+  display: flex; /* Flex layout for boxes */
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 10px; /* Space between boxes */
+  margin-bottom: 20px; /* Space below boxes */
+}
+
+.box {
+  background-color: #f0f0f0; /* Light gray background */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 20px; /* Padding inside box */
+  flex: 1 0 45%; /* Responsive width for boxes */
+  min-width: 200px; /* Minimum width for boxes */
+}
+
+.right-section {
+  flex: 0 0 30%; /* Right section takes 30% width */
+  padding-left: 10px; /* Space between left and right sections */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background */
+  padding: 20px; /* Padding */
+}
+
+.tab {
+  width: 50vw;
+}
