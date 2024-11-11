@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   console.log('Attempting to connect to MongoDB...');
   try {
-    await mongoose.connect(process.env.MONGO_URI); // Local MongoDB URI
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });; // Local MongoDB URI
     console.log('MongoDB connected');
   } catch (err) {
     console.error(err.message);
