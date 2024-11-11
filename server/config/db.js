@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   console.log('Attempting to connect to MongoDB...');
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/setMVP'); // Local MongoDB URI
+    await mongoose.connect(process.env.MONGODB_CONNECT_URI); // Local MongoDB URI
     console.log('MongoDB connected');
   } catch (err) {
     console.error(err.message);
