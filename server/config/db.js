@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   console.log('Attempting to connect to MongoDB...');
   try {
-    await mongoose.connect("mongodb+srv://guusvrv:tmtldCEk4mv5oUuC@setdb.fonny.mongodb.net/SETDB?retryWrites=true&w=majority&appName=SETDB", {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });; // Local MongoDB URI
