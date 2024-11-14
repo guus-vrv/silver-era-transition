@@ -1,6 +1,6 @@
 // src/components/SideNav.js
 import React, {useEffect, useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon component
 import { faHome, faUser, faBookmark, faInfoCircle, faEnvelope, faSearch, faRightFromBracket, faGauge } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 import './styles/SideNav.css'; // Add custom CSS for the sidebar
@@ -8,7 +8,9 @@ import customIcon from '../images/set-logo.webp';
 
 const SideNav = () => {
   const [role, setRole] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(null); // Voor dropdown status
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Retrieve the role from localStorage
@@ -16,11 +18,18 @@ const SideNav = () => {
     if (storedRole) {
       setRole(storedRole); // Update the state with the role
     }
-  }, []);
+
+    setDropdownOpen(null);
+
+  }, [location]);
 
   if (!role) {
     return null; // You can show a loading spinner or placeholder if the role is not yet available
   }
+
+  const toggleDropdown = (menu) => {
+    setDropdownOpen(dropdownOpen === menu ? null : menu);
+  };
 
   const handleLogout = () => {
     // Clear local storage or cookies
@@ -40,55 +49,39 @@ const SideNav = () => {
       {/* App name */}
       <ul>
         <li>
-          <Link to="/dashboard"><FontAwesomeIcon icon={faGauge} /> Dashboard</Link>
+          <Link to="/dashboard"><FontAwesomeIcon icon={faGauge} /> <span className='menu-link'>Dashboard</span></Link>
         </li>
         {role !== 'broker' && (
           <li>
-          <Link to="/discover"> <FontAwesomeIcon icon={faSearch} /> Discover Profiles</Link>
+          <Link to="/discover"> <FontAwesomeIcon icon={faSearch} /> <span className='menu-link'>Discover Profiles</span></Link>
         </li>
         )}
         {role !== 'broker' && (
           <li className="dropdown">
-          <span className="dropdown-toggle">
-            <li>
-              <Link><FontAwesomeIcon icon={faBookmark} /> Revisit Profiles</Link>
-            </li>
+          <span className="dropdown-toggle" onClick={() => toggleDropdown("revisit")}>
+            <Link><FontAwesomeIcon icon={faBookmark} /> <span className='menu-link'>Revisit Profiles</span></Link>
           </span>
-          <ul className="dropdown-menu">
-            <li>
-              <Link to="/saved">Saved Profiles</Link>
-            </li>
-            <li>
-              <Link to="/skipped">Skipped Profiles</Link>
-            </li>
+          <ul className={`dropdown-menu ${dropdownOpen === "revisit" ? "show" : ""}`}>
+            <li><Link to="/saved">Saved Profiles</Link></li>
+            <li><Link to="/skipped">Skipped Profiles</Link></li>
           </ul>
         </li>
         )}
 
         <li>
-          <Link to="/inbox"><FontAwesomeIcon icon={faEnvelope} /> Inbox</Link>
+          <Link to="/inbox"><FontAwesomeIcon icon={faEnvelope} /> <span className='menu-link'>Inbox</span></Link>
         </li>
          <li>
-          <Link to="https://docs.google.com/document/d/1mylEajDY7N8dj38b9Ou7Gu9KUbZzOBZdmWpsNMLDQLY/edit?tab=t.0" target='_blank'><FontAwesomeIcon icon={faInfoCircle} /> Read the SET guide</Link>
+          <Link to="https://docs.google.com/document/d/1mylEajDY7N8dj38b9Ou7Gu9KUbZzOBZdmWpsNMLDQLY/edit?tab=t.0" target='_blank'><FontAwesomeIcon icon={faInfoCircle} /> <span className='menu-link'>Read the SET guide</span></Link>
         </li>
         <li className="dropdown">
-          <span className="dropdown-toggle">
-            <li>
-            <Link><FontAwesomeIcon icon={faUser} /> My Account</Link>
-            </li>
+          <span className="dropdown-toggle" onClick={() => toggleDropdown("account")}>
+            <Link><FontAwesomeIcon icon={faUser} /> <span className='menu-link'>My Account</span></Link>
           </span>
-          <ul className="dropdown-menu">
-            {role !== 'broker' && (
-            <li>
-              <Link to="/edit-profile">Edit Profile</Link>
-            </li>
-            )}
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li>
-              <Link to="/login" className="logout-link" onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /> Logout</Link>
-            </li>
+          <ul className={`dropdown-menu ${dropdownOpen === "account" ? "show" : ""}`}>
+            {role !== 'broker' && <li><Link to="/edit-profile">Edit Profile</Link></li>}
+            <li><Link to="/settings">Settings</Link></li>
+            <li><Link to="/login" className="logout-link" onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} style={{marginRight: '0.5rem'}} /> Logout</Link></li>
           </ul>
         </li>
        

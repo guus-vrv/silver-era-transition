@@ -1,0 +1,75 @@
+/* Report.css */
+
+.report-container {
+    text-align: center;
+    padding: 20px;
+    color: #385454;
+    font-family: 'Arial', sans-serif;
+}
+
+.report-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #385454;
+    margin-bottom: 20px;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.file-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.upload-button {
+    padding: 10px 20px;
+    background-color: #385454;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.file-list {
+    margin-top: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+.file-list-title {
+    font-size: 20px;
+    color: #385454;
+    margin-bottom: 10px;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-link {
+    color: #385454;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.delete-button {
+    padding: 5px 10px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

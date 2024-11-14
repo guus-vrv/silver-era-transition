@@ -117,3 +117,42 @@
 .option-btn:hover {
   background-color: #89a9a9;
 }
+
+@media (max-width: 768px)
+{
+  .edit-profile-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .option-btn {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .progress-tracker h2 {
+   font-size: 1rem;
+  }
+
+  .progress-tracker div {
+    display: none;
+  }
+
+  .edit-profile-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .edit-profile-form p {
+    font-size: 0.8rem;
+  }
+
+  .box-right {
+    margin-left: 0;
+  }
+
+  .basics-form label {
+    font-size: 0.75rem;
+  }
+
+}

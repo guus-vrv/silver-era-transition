@@ -6,6 +6,14 @@
     font-family: 'Nunito Sans', sans-serif;
     padding: 2rem;
   }
+
+  .left-box {
+    order: 1;
+  }
+ 
+  .right-box {
+    order: 2;
+  }
   
   .top-container {
     flex: 0 0 30%; /* Takes up 30% of the height */
@@ -150,3 +158,43 @@
   padding: 1rem;
 }
 
+
+@media (max-width: 768px) {
+  .user-name {
+    font-size: 1rem;
+  }
+
+  .profile-box {
+    width: 100%;
+  }
+
+  .save-profile {
+    font-size: 1rem;
+  }
+
+  .filter-title {
+    display: none;
+  }
+
+  .bottom-container {
+    flex-direction: column;
+  }
+
+  .left-box {
+    order: 2;
+  }
+
+  .right-box {
+    order: 1;
+  }
+
+  .discover-profile-container {
+    padding: 0.5rem;
+  }
+
+  .info-box p {
+    font-size: 1rem;
+  }
+
+
+}

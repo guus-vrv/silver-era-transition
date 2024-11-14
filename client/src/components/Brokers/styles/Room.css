@@ -25,7 +25,7 @@
 }
 
 .button.active {
-  background-color: #385454;; /* Darker green for active tab */
+  background-color: #385454; /* Darker green for active tab */
 }
 
 .progress-marker {

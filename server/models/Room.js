@@ -1,6 +1,12 @@
 // models/Room.js
 const mongoose = require('mongoose');
 
+const reportSchema = new mongoose.Schema({
+  filename: String,
+  path: String,
+  uploadedAt: { type: Date, default: Date.now }
+});
+
 // Define the Room schema
 const roomSchema = new mongoose.Schema({
   brokerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // Reference to Broker,
@@ -20,7 +26,7 @@ const roomSchema = new mongoose.Schema({
   phase: {type: String, required: false},
   participants: {type: Array, required: false},
   groupChatId: { type: mongoose.Schema.Types.ObjectId, ref: 'GroupChat', required: false }, // Reference to Broker,
-  reports: {type: Array, required: false},
+  reports: [reportSchema],
   
 });
 

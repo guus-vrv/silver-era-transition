@@ -51,8 +51,6 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
 
-      <h2 style={{textAlign: 'center', padding: '20px'}}>Your Dashboard</h2>
-
       {/* Broker Section */}
       {role === 'broker' && (
         <div>
@@ -96,7 +94,7 @@ const Dashboard = () => {
       {/* Buyer/Seller Profile Section */}
       {(role === 'buyer' || role === 'seller') && (
         <div style={{textAlign: 'center'}} className='dashboard-page'>
-        <h2 className="dashboard-heading" style={{marginBottom: "2rem"}}> Your Filters</h2>
+        <h2 className="dashboard-heading" style={{marginBottom: "2rem", marginTop: '1rem'}}> Your Filters</h2>
         <Filters />
       </div>
       )}

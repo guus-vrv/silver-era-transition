@@ -5,7 +5,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 600px;
+  width: 60vw;
   margin: 20px auto;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
@@ -114,4 +114,33 @@
 
 .select {
   margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container h2 {
+    font-size: 1rem;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filter-left {
+    width: 100%;
+  }
+
+  .priority-button {
+    padding: 0.5rem;
+  }
+
+  .dashboard-page h2 {
+    font-size: 2rem;
+  }
+
+  .select div {
+    width: 100%;
+  }
+
 }

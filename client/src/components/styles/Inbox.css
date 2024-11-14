@@ -48,3 +48,10 @@
 .view-group-button:hover {
     background-color: #0056b3;
 }
+
+
+@media (max-width: 768px) {
+    .group-chats-grid {
+        grid-template-columns: none;
+    }
+}

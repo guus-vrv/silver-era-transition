@@ -27,7 +27,7 @@ const DiscoverProfile = () => {
         lastName: '',
         introduceYourself: '',
         backgroundExperience: '',
-        vision: '',
+        descriptionOfIdealMatch: '',
         interests: '',
       });
 
@@ -190,7 +190,6 @@ const handleSkip = async (receiverId) => {
                   )}
               </div>
               <h2 className="user-name">{profile.name} {profile.lastName}</h2>
-              <p className="bio">{profile.introduceYourself}</p>
               <button className="save-profile" onClick={() => handleBookmark(profile.user)}>
                 {bookmarked ? <FontAwesomeIcon icon={faCheck} style={{color: 'green'}}/> : <FontAwesomeIcon icon={faBookmark} style={{color: '#385454'}} /> }
                   
@@ -201,7 +200,7 @@ const handleSkip = async (receiverId) => {
           <div className="bottom-container">
             <div className="left-box">
               <div className="info-box">
-                <h3>About You</h3>
+                <h3>About</h3>
                 <p>{profile.introduceYourself}</p>
               </div>
               <div className="info-box">
@@ -209,8 +208,8 @@ const handleSkip = async (receiverId) => {
                 <p>{profile.backgroundExperience}</p>
               </div>
               <div className="info-box">
-                <h3>What I Am Looking For</h3>
-                <p>{profile.vision}</p>
+                <h3>Ideal Match</h3>
+                <p>{profile.descriptionOfIdealMatch}</p>
               </div>
               <div className="info-box">
                 <h3>Shared Interests</h3>
@@ -244,7 +243,7 @@ const handleSkip = async (receiverId) => {
                 </div>
               
                 
-                <button style={{marginTop: '1rem'}} className="button" onClick={() => navigate('/filters')}> Edit Filters</button>
+                <button className="button" onClick={() => navigate('/filters')}> Edit Filters</button>
               </div>
               
 

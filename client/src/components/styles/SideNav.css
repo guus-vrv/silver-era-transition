@@ -1,51 +1,60 @@
 /* src/components/SideNav.css */
 .sidenav {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #385454;
-    color: white;
-    height: 100vh; /* Full viewport height */
-    box-sizing: border-box;
-     /* Use Nunito Sans font */
-  }
-  
-  .sidenav h2 {
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  
-  .sidenav ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidenav ul li {
-    margin-bottom: 20px;
-  }
-  
-  .sidenav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-    padding: 1rem;
-    border-radius: 5px;
-    font-family: 'Nunito Sans', sans-serif;
-  }
-  
-  .sidenav ul li a:hover {
-    background-color: #2e4646;
-  }
-  
-  /* Styling for the custom icon */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #385454;
+  color: white;
+  height: 100vh; /* Full viewport height */
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+/* Styling voor het logo / custom icon bovenaan */
+/* Custom icon styling */
 .custom-icon {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   height: 5rem;
   width: 8rem;
   vertical-align: middle;
+}
+
+/* Verberg de lijst-items en de tekst standaard */
+.sidenav ul {
+  list-style: none;
+  padding: 0;
+
+}
+
+.sidenav ul li {
+  margin-bottom: 20px;
+}
+
+.sidenav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif;
+  width: 100%; /* Zorg ervoor dat de link de volledige breedte van het item gebruikt */
+}
+
+.sidenav ul li a span{
+  margin-left: 0.5rem;
+}
+
+/* Hover effect voor de links */
+.sidenav ul li a:hover {
+  background-color: #2e4646;
+}
+
+.menu-link {
+  display: block;
 }
 
 /* Dropdown container */
@@ -71,6 +80,10 @@
   margin: 0;
 }
 
+.dropdown-menu.show {
+  display: block;
+}
+
 /* Links inside the dropdown */
 .dropdown-menu li {
   padding: 8px 16px;
@@ -92,3 +105,41 @@
   background-color: #2e4646;
 }
 
+
+/* Responsieve styling voor mobiele apparaten */
+@media (max-width: 768px) {
+  .sidenav {
+      width: 20%; /* Sidebar is 20% van het scherm op kleinere schermen */
+      height: 100vh;
+  }
+
+  .custom-icon {
+      height: 2.5rem;
+      width: 4rem;
+  }
+
+  .sidenav ul li {
+      text-align: center;
+  }
+
+  .sidenav ul li a {
+      font-size: 16px;
+      padding: 0.8rem;
+      margin-top: 2.5rem;
+  }
+
+  .menu-link {
+    display: none
+  }
+
+  .dropdown-menu li {
+    padding: 0;
+  }
+
+  .sidenav ul li {
+    margin: 0;
+  }
+
+
+
+}

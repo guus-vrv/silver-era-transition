@@ -83,7 +83,7 @@ const SavedProfiles = () => {
             className="profile-picture"
           />
           <h3 className="profile-name">{profile.profile.name}</h3>
-          <p className="about-section">{profile.profile.introduceYourself}</p>
+         {/* HIER IN DE TOEKOMST READ MORE FUNCTIE */}
           {profile.hasConnection ? (
             <button className="invite-button" onClick={() => navigate(`/group-chat/${profile.groupChat._id}`)}>
             View Chat

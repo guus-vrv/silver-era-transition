@@ -11,7 +11,7 @@ const Room = () => {
   const navigate = useNavigate();
   const [room, setRoom] = useState({});
   const {roomNumber} = useParams();
-  const [activeTab, setActiveTab] = useState('reports'); // State for active tab
+  const [activeTab, setActiveTab] = useState('members'); // State for active tab
 
   useEffect(() => {
     const fetchRoomData = async () => {
@@ -30,13 +30,7 @@ const Room = () => {
 
   const renderTab = () => {
     switch (activeTab) {
-      case 'reports':
-        return (
-          <>
-                <h1 style={{textAlign: 'center'}}>Reports</h1>
-                
-          </>
-        );
+
         case 'members':
           return (
             <>
@@ -100,12 +94,6 @@ const Room = () => {
 
       <div className="tabs">
          <button className='button' onClick={() => navigate('/dashboard')}>Back</button>
-        <button 
-          onClick={() => handleTabChange('reports')} 
-          className={activeTab === 'reports' ? 'active button' : 'button'}
-        >
-          Reports
-        </button>
         <button 
           onClick={() => handleTabChange('members')} 
           className={activeTab === 'members' ? 'active button' : 'button'}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles/DiscoverProfile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faBookmark } from '@fortawesome/free-solid-svg-icons'; 
+import { faBookmark, faCheck } from '@fortawesome/free-solid-svg-icons'; 
 import axiosInstance from '../Auth/AxiosInstance';
 
 const API_URL = process.env.REACT_APP_API_URL; // Access the base URL from environment variable
@@ -54,60 +54,75 @@ const PreviewProfile = () => {
 
   return (
     <div className='preview-profile'>
-      <div className="discover-profile-container">
-        <div className="top-container">
-          <div className="profile-box">
-            <div className="form-group">
-                {profile.profilePicturePreview && (
-                <img src={profile.profilePicturePreview} alt="Profile" className="profile-picture" />
-                )}
-            </div>
-            <h2 className="user-name">{profile.name} {profile.lastName}</h2>
-            <p className="bio">{profile.introduceYourself}</p>
-            <button className="save-profile">
-              <FontAwesomeIcon icon={faBookmark} /> 
-            </button>
-          </div>
-        </div>
-
-        <div className="bottom-container">
-          <div className="left-box">
-            <div className="info-box">
-              <h3>About You</h3>
-              <p>{profile.introduceYourself}</p>
-            </div>
-            <div className="info-box">
-              <h3>My Background</h3>
-              <p>{profile.backgroundExperience}</p>
-            </div>
-            <div className="info-box">
-              <h3>What I Am Looking For</h3>
-              <p>{profile.vision}</p>
-            </div>
-            <div className="info-box">
-              <h3>Shared Interests</h3>
-              <p>{profile.interests}</p>
+       <div className="discover-profile-container">
+          <div className="top-container">
+            <div className="profile-box">
+              <div className="form-group">
+                  {profile.profilePicturePreview && (
+                  <img src={profile.profilePicturePreview} alt="Profile" className="profile-picture" />
+                  )}
+              </div>
+              <h2 className="user-name">{profile.name} {profile.lastName}</h2>
+              <button className="save-profile" >
+                <FontAwesomeIcon icon={faCheck} style={{color: 'green'}}/>
+                  
+              </button>
             </div>
           </div>
 
-          <div className="right-box">
-            <div className="invite-box">
-              <h3>Invite to Connect</h3>
-              <textarea
-                placeholder="Enter your message..."
-                rows="4"
-                className="invite-input"
-                disabled
-              />
-              <button className="invite-button">Invite to Connect</button>
+          <div className="bottom-container">
+            <div className="left-box">
+              <div className="info-box">
+                <h3>About</h3>
+                <p>{profile.introduceYourself}</p>
+              </div>
+              <div className="info-box">
+                <h3>My Background</h3>
+                <p>{profile.backgroundExperience}</p>
+              </div>
+              <div className="info-box">
+                <h3>Ideal Match</h3>
+                <p>{profile.descriptionOfIdealMatch}</p>
+              </div>
+              <div className="info-box">
+                <h3>Shared Interests</h3>
+                <p>{profile.interests}</p>
+              </div>
             </div>
 
-            <button className="skip-button">Skip for Now</button>
+            <div className="right-box">
+              <div className="invite-box">
+                {/* INVITE  */}
+                <div className="invite-profile-container">
+                  <textarea
+                    className="invite-input"
+                    placeholder="Enter your message here..."
+                    disabled
+                  />
+                  <button className="invite-button">
+                    Invite to Connect
+                  </button>
+                  <button className="skip-button">
+                    Skip for Now
+                  </button>
+                </div>
+              </div>
+              
+              <div className="filter-box" style={{marginTop: '20px'}}>
+                <div style={{marginTop: '.5rem'}} className="filter-title">
+                  <h3>Your Filters</h3>
+                      
+                </div>
+              
+                
+                <button className="button"> Edit Filters</button>
+              </div>
+              
 
+            </div>
+          </div>
 
           </div>
-        </div>
-      </div>
     </div>
   );
 };

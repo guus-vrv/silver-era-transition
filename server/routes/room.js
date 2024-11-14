@@ -9,6 +9,7 @@ const Seller = require('../models/Seller'); // Import Seller model
 
 const authMiddleware = require('../middleware/auth'); // Import your middleware
 
+
 router.get('/:roomNumber', authMiddleware, async (req, res) => {
     try {
         const id = req.userId;
@@ -70,7 +71,6 @@ router.get('/:roomNumber', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Server error while retrieving room' });
     }
 });
-
 
 router.get('/', authMiddleware, async (req, res) => {
     try {

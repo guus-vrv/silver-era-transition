@@ -3,10 +3,17 @@ const express = require('express');
 const GroupChat = require('../models/GroupChat'); // Import the GroupChat model
 const User = require('../models/User'); // Import the GroupChat model
 const router = express.Router();
+const path = require('path');
+const multer = require('multer');
 const authMiddleware = require('../middleware/auth'); // Import your middleware
 const Buyer = require('../models/Buyer'); // Import Buyer model
 const Seller = require('../models/Seller'); // Import Seller model
 const { Connection, SkippedProfile, SavedProfile } = require('../models/Message'); // Assume these models exist and are imported properly
+
+const upload = multer({ dest: 'upload-file/', filename: function (req, file, cb) {
+  // Use the original filename
+  cb(null, file.originalname);
+}});
 
 // Create a new group chat - trigger when invite to connect is sent
 router.post('/create-from-members', authMiddleware, async (req, res) => {
@@ -196,16 +203,27 @@ router.get('/group/:groupId', authMiddleware, async (req, res) => {
 
 
 // Send a message in a group chat
-router.post('/:groupId/message', authMiddleware, async (req, res) => {
+router.post('/:groupId/message', authMiddleware, upload.single('file'),async (req, res) => {
   const { groupId } = req.params;
   const senderId = req.userId;
   const message = req.body.message;
+  const file = req.file;
 
   try {
     const groupChat = await GroupChat.findById(groupId);
     if (!groupChat) return res.status(404).json({ error: 'Group chat not found' });
 
-    groupChat.messages.push({ sender: senderId, message });
+    if (!file)
+    {
+      groupChat.messages.push({ sender: senderId, message });
+    }
+
+    else
+
+    {
+      groupChat.messages.push({ sender: senderId, message: message, filename: file.originalname, path: file.path });
+    }
+
     await groupChat.save();
 
     res.status(201).json({ message: 'Message sent successfully!', groupChat });
