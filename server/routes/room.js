@@ -9,6 +9,27 @@ const Seller = require('../models/Seller'); // Import Seller model
 
 const authMiddleware = require('../middleware/auth'); // Import your middleware
 
+router.delete('/:roomNumber', authMiddleware, async (req, res) => {
+
+    try {
+        const id = req.userId;
+
+        const roomNumber = req.params.roomNumber
+
+        const room = await Room.deleteOne({
+            brokerId: id,
+            roomNumber: roomNumber
+          });        
+
+        console.log('id', id);
+    }
+
+    catch (error) {
+        console.error('Error deleting room:', error);
+        res.status(500).json({ message: 'Server error while deleting room' });
+    }
+
+});
 
 router.get('/:roomNumber', authMiddleware, async (req, res) => {
     try {

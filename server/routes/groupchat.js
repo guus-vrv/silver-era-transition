@@ -209,6 +209,10 @@ router.post('/:groupId/message', authMiddleware, upload.single('file'),async (re
   const message = req.body.message;
   const file = req.file;
 
+  // kan ik hier de naam aanpassen?
+
+  
+
   try {
     const groupChat = await GroupChat.findById(groupId);
     if (!groupChat) return res.status(404).json({ error: 'Group chat not found' });

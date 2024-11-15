@@ -19,7 +19,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/uploads', require('./routes/uploads'));
 
-// Make upload reports url available for site
+app.get('/upload-file/:filename', (req, res) => {
+  const filePath = path.join(__dirname, 'upload-file', req.params.filename);
+  const originalName = req.query.name || req.params.filename; // Gebruik originele naam als queryparameter indien beschikbaar
+  res.download(filePath, originalName, (err) => {
+    if (err) {
+      res.status(500).send('Error downloading the file');
+    }
+  });
+});
+
+/*
 app.use('/upload-file', express.static(path.join(__dirname, 'upload-file'), {
     setHeaders: (res, filePath) => {
       const fileName = path.basename(filePath);  // originele bestandsnaam
@@ -27,6 +37,8 @@ app.use('/upload-file', express.static(path.join(__dirname, 'upload-file'), {
       res.setHeader('Content-Type', 'application/octet-stream'); // Dit kan ook helpen om bestandstype te identificeren
     }
   }));
+
+*/
 
 app.use('/api/user', require('./routes/user'));
 app.use('/api/message', require('./routes/message'));

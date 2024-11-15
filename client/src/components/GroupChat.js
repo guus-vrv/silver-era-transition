@@ -93,10 +93,14 @@ const GroupChat = ({ groupChatId }) => {
                   {msg.filename && (<div>
                     
                     <br/>
-                     <a href={`${API_URL}/${msg.path}`} target="_blank" rel="noopener noreferrer">
-                    {msg.filename}
-                  </a>
-                  
+                    <a
+                      href={`${API_URL}/${msg.path}?name=${encodeURIComponent(msg.filename)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {msg.filename}
+                    </a>
+                                      
                   </div>
                 )}
                  

@@ -87,6 +87,14 @@ const Room = () => {
 
   };
 
+  const handleDeleteRoom = async () => {
+    try {
+      const response = await axiosInstance.delete(`${API_URL}/api/room/${roomNumber}`);
+    } catch (error) {
+      console.error('Error deleting room', error);
+    }
+  }
+
   return (
     <div className="room-details">
       {/* Tabs for navigation */}
@@ -112,6 +120,15 @@ const Room = () => {
         >
           Chat
         </button>
+        <button className='button' style={{backgroundColor: 'red'}} onClick={() => {
+          if (window.confirm("Are you sure you want to delete this room?")) {
+            handleDeleteRoom();
+            navigate('/dashboard');
+          } 
+        
+        }}>Delete Room</button>
+
+
       </div>
 
       {/* Progress Marker */}
@@ -125,6 +142,8 @@ const Room = () => {
       <div className='tab'>
         {renderTab()}
       </div>
+
+      
    
     </div>
   );

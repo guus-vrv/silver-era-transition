@@ -226,19 +226,6 @@ const MoreAboutYou = ({onComplete}) => {
       </div>
       )}
 
-
-      {/* Background/Experience */}
-      <div className="form-group">
-        <label htmlFor="postSaleInvolvement">Post-Sale Involvement</label>
-        <input
-          type="text"
-          id="postSaleInvolvement"
-          name="postSaleInvolvement"
-          value={formData.postSaleInvolvement}
-          onChange={handleChange}
-          required
-        />
-      </div>
       {/* Submit Button */}
       <button type="submit" className="submit-btn">
         Save Profile
