@@ -85,7 +85,6 @@ const SelectProfiles = () => {
             className="profile-picture"
           />
           <h3 className="profile-name">{profile.profile.name}</h3>
-          <p className="about-section">{profile.profile.introduceYourself}</p>
 
           {profilesToAdd.includes(profile.profile.user) ? (<button className="button" style={{backgroundColor: 'red'}} onClick={() => deleteProfile(profile.profile.user)}>
               Remove

@@ -13,6 +13,7 @@ const DiscoverProfile = () => {
   const [profilesFound, setProfilesFound] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
    const [filters, setFilters] = useState([]);
+   const [expandedSections, setExpandedSections] = useState({});
 
 
   const navigate = useNavigate();
@@ -75,6 +76,21 @@ const DiscoverProfile = () => {
       fetchProfile();
 
   }, []);
+
+  const toggleExpand = (section) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  const truncateText = (text, section) => {
+    const isExpanded = expandedSections[section];
+    if (text.length <= 200 || isExpanded) {
+      return text;
+    }
+    return `${text.slice(0, 200)}...`;
+  };
 
   const handleInvite = async (receiverId) => {
     try {
@@ -201,11 +217,29 @@ const handleSkip = async (receiverId) => {
             <div className="left-box">
               <div className="info-box">
                 <h3>About</h3>
-                <p>{profile.introduceYourself}</p>
+                <p>
+
+                {truncateText(profile.introduceYourself, 'introduceYourself')}
+                  {profile.introduceYourself.length > 200 && (
+                    <span style={{color: 'blue', textDecoration: 'underline'}} className="read-more" onClick={() => toggleExpand('introduceYourself')}>
+                      {expandedSections['introduceYourself'] ? ' Read Less' : ' Read More'}
+                    </span>
+                  )}
+
+                </p>
               </div>
               <div className="info-box">
                 <h3>My Background</h3>
-                <p>{profile.backgroundExperience}</p>
+                <p>
+
+                {truncateText(profile.backgroundExperience, 'backgroundExperience')}
+                  {profile.backgroundExperience.length > 200 && (
+                    <span style={{color: 'blue', textDecoration: 'underline'}} className="read-more" onClick={() => toggleExpand('backgroundExperience')}>
+                      {expandedSections['backgroundExperience'] ? ' Read Less' : ' Read More'}
+                    </span>
+                  )}
+
+                </p>
               </div>
               <div className="info-box">
                 <h3>Ideal Match</h3>

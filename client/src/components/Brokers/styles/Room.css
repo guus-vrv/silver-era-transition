@@ -80,3 +80,70 @@
 .tab {
   width: 50vw;
 }
+
+@media (max-width: 768px) {
+  .room-details {
+    padding: 10px; /* Reduce padding for smaller screens */
+    height: auto; /* Adjust height for smaller screens */
+  }
+
+  .tabs {
+    flex-wrap: wrap; /* Allow wrapping of buttons */
+    justify-content: space-around;
+  }
+
+  .button {
+    font-size: 0.9rem; /* Reduce font size */
+    width: 100%;
+  }
+
+  .progress-marker {
+    margin-bottom: 1rem; /* Adjust spacing below progress marker */
+    text-align: center ;
+  }
+
+  .progress-bar {
+    height: 0.5rem; /* Adjust height of the progress bar */
+    margin-bottom: 1rem;
+  }
+
+  .progress-marker span {
+    padding: 0.5rem; /* Adjust height of the progress bar */
+    
+  }
+
+  .progress {
+    height: 0.5rem; /* Match progress bar height */
+  }
+
+  .tab {
+    width: 90vw; /* Full width for content */
+  }
+
+  .participants-pictures {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; /* Allow participant pictures to wrap */
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .participants-pictures div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 1rem;
+  }
+
+  .left-section, .right-section {
+    flex: 1 1 100%; /* Full width for sections */
+    padding: 1rem; /* Adjust padding */
+  }
+
+  .box {
+    flex: 1 0 100%; /* Full width for boxes */
+    min-width: 15vw; /* Adjust minimum width */
+  }
+}

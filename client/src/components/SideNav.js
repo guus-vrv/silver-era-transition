@@ -43,7 +43,7 @@ const SideNav = () => {
   return (
     <div className="sidenav">
       <div>
-      <img src={customIcon} alt="Custom Icon" className="custom-icon" /> 
+      <Link to="/dashboard"><img src={customIcon} alt="Custom Icon" className="custom-icon" href="/dashboard" /> </Link>
       </div>
       
       {/* App name */}

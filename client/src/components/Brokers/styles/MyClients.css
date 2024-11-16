@@ -93,3 +93,42 @@ tr:nth-child(even) {
 .add-room-button:hover {
   background-color: #b49936; /* Darker shade on hover */
 }
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .table-container {
+    max-height: 50vh; /* Adjust height for better visibility */
+    overflow-x: auto; /* Allow horizontal scrolling */
+  }
+
+  .clients-table {
+    font-size: 0.9rem; /* Reduce font size for smaller screens */
+  }
+
+  .table-head-room,
+  .table-head-phase,
+  .table-head-created,
+  .table-head-updated,
+  .table-head-business-space,
+  .table-head-prospect,
+  .table-head-location,
+  .table-head-revenue,
+  .room-cell,
+  .phase-cell,
+  .created-cell,
+  .updated-cell,
+  .business-space-cell,
+  .prospect-cell,
+  .location-cell,
+  .revenue-cell {
+    padding: 8px; /* Reduce padding for smaller cells */
+  }
+
+  .add-room-button {
+    width: 100%; /* Full width button */
+    font-size: 1rem; /* Adjust font size for better readability */
+  }
+}

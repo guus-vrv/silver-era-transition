@@ -14,6 +14,7 @@
 .current-filter-container {
   flex-direction: column;
   justify-content: center;
+  overflow-x: auto;
 }
 
 .filter-field {

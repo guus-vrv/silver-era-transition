@@ -34,7 +34,6 @@ const Room = () => {
         case 'members':
           return (
             <>
-                  <h1 style={{textAlign: 'center'}}>Members</h1>
                   <div className="participants-pictures">
                     {room.participants ? (room.participants.map((participant) => {
                       return (
@@ -62,17 +61,9 @@ const Room = () => {
               </>
             );
 
-          case 'invite-contacts':
-            return (
-              <>
-                    <h1 style={{textAlign: 'center'}}>Invite Contacts</h1>
-                  
-              </>
-            );
             case 'chat':
               return (
                 <>
-                      <h1 style={{textAlign: 'center', marginBottom: '1rem'}}>Chat</h1>
                       <GroupChat groupChatId={room.groupChatId}/>
                     
                 </>
@@ -109,12 +100,6 @@ const Room = () => {
           Members
         </button>
         <button 
-          onClick={() => handleTabChange('invite-contacts')} 
-          className={activeTab === 'invite-contacts' ? 'active button' : 'button'}
-        >
-          Invite Contacts
-        </button>
-        <button 
           onClick={() => handleTabChange('chat')} 
           className={activeTab === 'chat' ? 'active button' : 'button'}
         >
@@ -129,14 +114,6 @@ const Room = () => {
         }}>Delete Room</button>
 
 
-      </div>
-
-      {/* Progress Marker */}
-      <div className="progress-marker">
-        <div className="progress-bar">
-          <div className="progress" style={{ width: '60%' }}></div>
-        </div>
-        <span>60% Completed</span>
       </div>
 
       <div className='tab'>

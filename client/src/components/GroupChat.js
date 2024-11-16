@@ -69,6 +69,9 @@ const GroupChat = ({ groupChatId }) => {
   };
 
   return (
+
+    <div>
+
     <div className="group-chat">
       <div className="chat-container">
         <div className="participants">
@@ -122,8 +125,17 @@ const GroupChat = ({ groupChatId }) => {
       </div>
       
 
+      
+
     </div>
+
+   
+
+    </div>
+
+
   );
+
 };
 
 export default GroupChat;

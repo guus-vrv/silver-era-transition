@@ -40,7 +40,7 @@ const Login = () => {
       }
     } catch (err) {
       if (err.response) {
-        setError(err.response.data.errors?.map((error) => error.msg).join(', ') || 'Server Error');
+        setError(err.response.data.msg || 'Server Error');
       } else {
         setError('Server Error');
       }

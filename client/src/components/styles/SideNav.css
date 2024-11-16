@@ -125,7 +125,10 @@
   .sidenav ul li a {
       font-size: 16px;
       padding: 0.8rem;
-      margin-top: 2.5rem;
+  }
+
+  .sidenav > ul > li, .dropdown > a {
+    margin-top: 2.5rem;
   }
 
   .menu-link {
@@ -136,8 +139,8 @@
     padding: 0;
   }
 
-  .sidenav ul li {
-    margin: 0;
+  .dropdown-menu li a {
+    margin-top: 1rem;
   }
 
 

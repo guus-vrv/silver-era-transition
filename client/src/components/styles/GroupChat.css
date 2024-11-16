@@ -44,6 +44,13 @@
     border-radius: 50%;
     margin-right: 10px;
   }
+
+  .button-div {
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
   
   .message-list {
     width: 80%;
@@ -129,6 +136,7 @@
 @media (max-width: 768px) {
   .group-chat {
     height: 100vh;
+    max-width: 75vw;
   }
 
   .chat-container {
