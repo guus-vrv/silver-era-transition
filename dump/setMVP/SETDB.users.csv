@@ -1,0 +1,11 @@
+_id,name,email,password,role,date,__v,brokerId
+6708f0c20184bb56bb59a29c,Broker,test@test.com,$2a$10$GWqdLdVSieLlvCcZbb/X4urxXSxZFcTf34OZjqpD.ekPFQbS.6F56,broker,2024-10-11T09:32:50.510Z,0,
+67323c5a32a93f7728d0f0a8,Simone Vascotto,vascottosimone@gmail.com,$2a$10$1VyrFX/SO584OFVrIb86fOfAdF7mmAIJMf8W/Da.A8fDcM0IeKeha,broker,2024-11-11T17:18:18.772Z,0,
+6734f0fcdc2b9ad45bd79e3f,Willem van den Berg,willem@vandenberg.com,$2a$10$H.yUSC4cqUcrmX653bLeAuzVAzwcYB67gAlnXALynZZ54mu.RdOuK,seller,2024-11-13T18:33:32.052Z,0,6708f0c20184bb56bb59a29c
+67373946a9744ec695c8f6ce,Rik,rik.vanderlinde@example.com,$2a$10$v06RGr6RU.yfs9QgqCSizelisSwVQ5H6dZaxFSqywJNfQ1GJmvg5W,buyer,2024-11-15T12:06:30.850Z,0,6708f0c20184bb56bb59a29c
+67373946a9744ec695c8f6cf,Karin,karin.bakker@example.com,$2a$10$Lyd4uiIYHCECQtRJm32dM.MmYbWGdxXWf1nq5cPbr8r86Has5EoX6,buyer,2024-11-15T12:06:30.851Z,0,6708f0c20184bb56bb59a29c
+67373946a9744ec695c8f6d0,Jan,jan.hendriks@example.com,$2a$10$nL4u7bR95Xtsomd1l8C17uJItjfbmNHaMKo1bwtTQJPKlNMDPLV9y,buyer,2024-11-15T12:06:30.851Z,0,6708f0c20184bb56bb59a29c
+67373946a9744ec695c8f6d1,Henk,henk.janssen@example.com,$2a$10$kkiGMonZcOkM0egCtzjihuGRUY1lI9ipEKesowqYWX48fZwSnUfxG,seller,2024-11-15T12:06:30.851Z,0,6708f0c20184bb56bb59a29c
+67373946a9744ec695c8f6d2,Anja,anja.deboer@example.com,$2a$10$2CUhGK.dzRQOIL7LdoX1GOvkYOYZD7OgOoe7BQULoTF7t35dUOL76,seller,2024-11-15T12:06:30.852Z,0,6708f0c20184bb56bb59a29c
+67373946a9744ec695c8f6d3,Ria,ria.koster@example.com,$2a$10$Cqcfxbr.8dx2vz5jUJz2bOXi4IRJkvhZu76W7ODAW5Q/Y9fl20MW.,seller,2024-11-15T12:06:30.852Z,0,6708f0c20184bb56bb59a29c
+67384e21c45b9475596ed036,Test,2323@3232.com,$2a$10$owHfEY53m2b5yo7rSYQ.uu42Bv.MbBTjV.OXWdwX6gGWOEbAl.MA2,broker,2024-11-16T07:47:45.650Z,0,

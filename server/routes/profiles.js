@@ -450,7 +450,7 @@ router.get('/discover', authMiddleware, async (req, res) => {
         }
         if (f.filter === "Generic location")
         {
-          filterConditions.genericLocation = {$in: f.value};
+          filterConditions.location = {$in: f.value};
         }
         if (f.filter === "Post Sale Involvement")
         {
@@ -475,8 +475,6 @@ router.get('/discover', authMiddleware, async (req, res) => {
             }
         }
       });
-
-      console.log(filterConditions);
 
       // next - filter profiles based on given filters
       

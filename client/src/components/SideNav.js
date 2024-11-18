@@ -31,6 +31,10 @@ const SideNav = () => {
     setDropdownOpen(dropdownOpen === menu ? null : menu);
   };
 
+  const closeDropdown = () => {
+    setDropdownOpen(null);
+  };
+
   const handleLogout = () => {
     // Clear local storage or cookies
     localStorage.removeItem('role'); // Clear the role
@@ -62,8 +66,8 @@ const SideNav = () => {
             <Link><FontAwesomeIcon icon={faBookmark} /> <span className='menu-link'>Revisit Profiles</span></Link>
           </span>
           <ul className={`dropdown-menu ${dropdownOpen === "revisit" ? "show" : ""}`}>
-            <li><Link to="/saved">Saved Profiles</Link></li>
-            <li><Link to="/skipped">Skipped Profiles</Link></li>
+            <li><Link to="/saved" onClick={closeDropdown}>Saved Profiles</Link></li>
+            <li><Link to="/skipped" onClick={closeDropdown}>Skipped Profiles</Link></li>
           </ul>
         </li>
         )}
@@ -79,8 +83,8 @@ const SideNav = () => {
             <Link><FontAwesomeIcon icon={faUser} /> <span className='menu-link'>My Account</span></Link>
           </span>
           <ul className={`dropdown-menu ${dropdownOpen === "account" ? "show" : ""}`}>
-            {role !== 'broker' && <li><Link to="/edit-profile">Edit Profile</Link></li>}
-            <li><Link to="/settings">Settings</Link></li>
+            {role !== 'broker' && <li><Link to="/edit-profile" onClick={closeDropdown}>Edit Profile</Link></li>}
+            <li><Link to="/settings" onClick={closeDropdown}>Settings</Link></li>
             <li><Link to="/login" className="logout-link" onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} style={{marginRight: '0.5rem'}} /> Logout</Link></li>
           </ul>
         </li>

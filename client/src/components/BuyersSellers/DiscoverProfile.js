@@ -175,22 +175,36 @@ const DiscoverProfile = () => {
 
   
 const handleSkip = async (receiverId) => {
-  try {
 
-    const response = await axiosInstance.post( `${API_URL}/api/message/skip`, {receiverId});
+  if (!bookmarked)
+    // alleen als de gebruiker niet opgeslagen is, voegen we ze toe aan saved profiles
+    // anders gewoon door naar de volgende zonder API requests te maken
+  {
 
-    if (response.status === 201) {
-      // GO TO NEXT PROFILE
-      fetchProfile();
-    } else {
-        alert(`Failed to skip profile: ${response.data.error}`);
-    }
-  } 
-  
-  catch (error) {
-    console.error('Error skipping profile:', error);
-     alert('Failed to skip profile. Please try again later.');
+    try {
+
+        const response = await axiosInstance.post( `${API_URL}/api/message/skip`, {receiverId});
+
+        if (response.status === 201) {
+          // GO TO NEXT PROFILE
+          fetchProfile();
+        } else {
+            alert(`Failed to skip profile: ${response.data.error}`);
+        }
+
+        } 
+        catch (error) {
+          console.error('Error skipping profile:', error);
+          alert('Failed to skip profile. Please try again later.');
+        }
+
   }
+
+  else
+  {
+    fetchProfile();
+  }
+  
 
 };
 

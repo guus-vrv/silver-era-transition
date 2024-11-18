@@ -170,8 +170,7 @@ const Filters = () => {
             <label>Select Nationalities:</label>
             <div className='select'>
             {[
-            "USA", "Canada", "France", "Germany", "Japan", "Brazil", "India", "UK", "Australia", "China", "Netherlands", 
-            "Italy", "Spain", "Russia", "South Africa", "Mexico", "South Korea", "Saudi Arabia", "UAE", "Argentina"
+            "American", "Canadian", "French", "German", "Japanese", "Brazilian", "Indian", "British", "Australian", "Chinese", "Dutch", "Italian", "Spanish", "Russian", "South African", "Mexican", "South Korean", "Saudi", "Emirati", "Argentine"
           ].map((nation) => (
               <div key={nation} >
                 <label>{nation}</label>

@@ -122,7 +122,6 @@
 
   .participants-pictures {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap; /* Allow participant pictures to wrap */
     justify-content: center;
     align-items: center;
