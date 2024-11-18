@@ -5,6 +5,8 @@ import axiosInstance from './Auth/AxiosInstance'; // Assuming AxiosInstance is s
 import { jwtDecode as jwt_decode } from 'jwt-decode'; // if you want to keep calling it jwt_decode
 import './styles/Settings.css';
 
+const API_URL = process.env.REACT_APP_API_URL; // Your API base URL
+
 const Settings = () => {
 
   const navigate = useNavigate(); // useHistory hook to programmatically navigate
@@ -13,7 +15,7 @@ const Settings = () => {
     const fetchUserDetails = async () => {
       try {
           // Make an API call to get the user details
-          const response = await axiosInstance.get(`http://localhost:5001/api/profiles/email`);
+          const response = await axiosInstance.get(`${API_URL}/api/profiles/email`);
           // Set the email from the response
           setEmail(response.data.email);
       }
@@ -37,7 +39,7 @@ const Settings = () => {
     try {
       setSuccessMessage('');
       setErrorMessage('');
-      const response = await axiosInstance.put('http://localhost:5001/api/profiles/update-email', { email });
+      const response = await axiosInstance.put(`${API_URL}/api/profiles/update-email`, { email });
       setSuccessMessage(response.data.message);
     } catch (error) {
         console.log(error.response.data.message)
@@ -50,7 +52,7 @@ const Settings = () => {
     try {
       setSuccessMessage('');
       setErrorMessage('');
-      const response = await axiosInstance.put('http://localhost:5001/api/profiles/update-password', {
+      const response = await axiosInstance.put(`${API_URL}/api/profiles/update-password`, {
         oldPassword,
         newPassword,
       });
