@@ -13,7 +13,6 @@ const roomSchema = new mongoose.Schema({
   roomNumber: {
     type: Number,
     required: true,
-    unique: true, // Ensure each room number is unique
   },
   created: {
     type: Date,
@@ -34,9 +33,9 @@ const roomSchema = new mongoose.Schema({
 const Room = mongoose.model('Room', roomSchema);
 
 // Function to generate the next room number
-roomSchema.statics.getNextRoomNumber = async function () {
-  const lastRoom = await this.findOne().sort({ roomNumber: -1 });
-  return lastRoom ? lastRoom.roomNumber + 1 : 1; // Increment room number
+roomSchema.statics.getNextRoomNumber = async function (brokerId) {
+  const lastRoom = await this.findOne({ brokerId }).sort({ roomNumber: -1 });
+  return lastRoom ? lastRoom.roomNumber + 1 : 1; // Increment room number per broker
 };
 
 // Export the Room model

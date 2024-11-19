@@ -7,6 +7,7 @@ import BasicsForm from './BasicsForm';
 import MoreAboutYou from './MoreAboutYou';
 import BuyerPreferences from './BuyerPreferences';
 import PreviewProfile from './PreviewProfile';
+import AboutYourBusiness from './AboutYourBusiness';
 
 const API_URL = process.env.REACT_APP_API_URL; // Access the base URL from environment variable
 
@@ -58,6 +59,16 @@ const EditProfile = () => {
             </div>
           </>
         );
+      case 'aboutBusiness':
+        return (
+          <>
+              <div className="edit-profile-form">
+                <h1 className="edit-profile-title">About Your Business</h1>
+              <AboutYourBusiness  onComplete={fetchCompletion} />
+  
+            </div>
+          </>
+        );
       case 'buyerPreferences':
         return (
           <>
@@ -95,6 +106,7 @@ const EditProfile = () => {
         <div className="box-left">
           <button className='option-btn' onClick={() => setSelectedOption('basics')}>Basics</button>
           <button className='option-btn'  onClick={() => setSelectedOption('moreAboutYou')}>More About You</button>
+          {role === 'seller' && (<button className='option-btn'  onClick={() => setSelectedOption('aboutBusiness')}>About Your Business</button> )}
           <button className='option-btn'  onClick={() => setSelectedOption('buyerPreferences')}>{role === 'buyer' ? 'Seller' : 'Buyer'} Preferences</button>
           <button  className='option-btn' onClick={() => setSelectedOption('previewProfile')}>Preview Your Profile</button>
 

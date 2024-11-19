@@ -441,7 +441,6 @@ router.get('/discover', authMiddleware, async (req, res) => {
       filters.map((f) => {
         if (f.filter === "Age")
         {
-          console.log('FVALUE', f.value);
           filterConditions.age = {$gte: parseInt(f.value[0]), $lte: parseInt(f.value[1])};
         }
         if (f.filter === "Nationality")

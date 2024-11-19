@@ -115,7 +115,7 @@ router.post('/', authMiddleware, async (req, res) => {
 
         const formData = req.body;
 
-        const room = await Room.findOne({roomNumber: formData.roomNumber}).exec();
+        const room = await Room.findOne({brokerId: id, roomNumber: formData.roomNumber}).exec();
 
         if (!room)
         {
@@ -135,8 +135,6 @@ router.post('/', authMiddleware, async (req, res) => {
             // Incorrect code in routes/room.js
             return res.status(201).json({ message: "Room created successfully" });
         }
-
-        
 
         res.status(400).json({message: 'Room with this number already exists.'});
         

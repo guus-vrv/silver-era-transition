@@ -14,23 +14,40 @@ const DiscoverProfile = () => {
   const [bookmarked, setBookmarked] = useState(false);
    const [filters, setFilters] = useState([]);
    const [expandedSections, setExpandedSections] = useState({});
+   const role = localStorage.getItem('role');
 
 
   const navigate = useNavigate();
 
   const [profile, setProfile] = useState({
-        profilePicture: {
-            type: String,
-            default: ''
-        },
-        name: '', // Preview URL for the uploaded picture
-        user: '',
-        lastName: '',
-        introduceYourself: '',
-        backgroundExperience: '',
-        descriptionOfIdealMatch: '',
-        interests: '',
-      });
+    profilePicture: {
+      type: String,
+      default: ''
+    },
+    profilePicturePreview: '',
+    name: '',
+    user: '',
+    lastName: '',
+    introduceYourself: '',
+    backgroundExperience: '',
+    descriptionOfIdealMatch: '',
+    interests: '',
+    business: '',
+    businessLocation: '',
+    salesVolumeEUR: '',
+    resultEUR: '',
+    employees: '',
+    shareToBeTransferred: '',
+    transactionBackground: '',
+    productMarketFit: '',
+    valueProposition: '',
+    profitMargin: '',
+    revenue: '',
+    cashflow: '',
+    customerBase: '',
+    companyCulture: ''
+  });
+  
 
   const [message, setMessage] = useState('');
 
@@ -49,10 +66,7 @@ const DiscoverProfile = () => {
   const fetchProfile = async () => {
     setBookmarked(false);
 
-    
-
     try {
-      
         const res = await axiosInstance.get(`${API_URL}/api/profiles/discover`);
         setProfilesFound(true);
         const profilePictureUrl = res.data.profilePicture ? `${API_URL}${res.data.profilePicture}` : ''; // Construct full URL
@@ -293,6 +307,23 @@ const handleSkip = async (receiverId) => {
                 
                 <button className="button" onClick={() => navigate('/filters')}> Edit Filters</button>
               </div>
+
+              {role === 'buyer' && profile.business && (
+  
+                  <div className="info-box business">
+                    <h3>Business Details</h3>
+                    <p><strong>{profile.business} in {profile.businessLocation}</strong></p>
+                    <p><strong>Sales Volume:</strong> €{profile.salesVolumeEUR}</p>
+                    <p><strong>Result:</strong> €{profile.resultEUR}</p>
+                    <p><strong>Employees:</strong> {profile.employees}</p>
+                    <p><strong>Share to Be Transferred:</strong> {profile.shareToBeTransferred}</p>
+                    <p><strong>Transaction Background:</strong> {profile.transactionBackground}</p>
+                    <p><strong>Product Market Fit:</strong> {profile.productMarketFit}</p>
+                    <p><strong>Value Proposition:</strong> {profile.valueProposition}</p>
+                  </div>
+                
+              )}
+
               
 
             </div>

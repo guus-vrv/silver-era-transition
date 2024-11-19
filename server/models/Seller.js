@@ -120,13 +120,82 @@ const sellerSchema = new mongoose.Schema({
       required: false,
       default: ''  // Add default value
     },
+    business: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    businessLocation: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    salesVolumeEUR: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    resultEUR: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    employees: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    shareToBeTransferred: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    transactionBackground: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    productMarketFit: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    valueProposition: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    profitMargin: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    revenue: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    cashflow: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    customerBase: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    companyCulture: {
+        type: String,
+        required: false,
+        default: ''
+    },
     completedPages: {type: Array, required: false, default: []},
     filters: {type: Array, required: false, default: []}
 }, { timestamps: true });
 
 sellerSchema.set('toJSON', {
     transform: (doc, ret) => {
-        // Check if capital is a Decimal128 and convert it to a number
         if (ret.capital) {
             ret.capital = parseFloat(ret.capital.toString());  // Convert to number if it's Decimal128
         }
