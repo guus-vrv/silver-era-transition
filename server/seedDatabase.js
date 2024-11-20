@@ -31,27 +31,28 @@ const getRandomProfilePicture = () => {
   return `/uploads/${randomFile}`;
 };
 
-// Gebruikers aanmaken (3 buyers, 3 sellers)
 const users = [
   {
-    name: 'Rik', lastName: 'van der Linde', email: 'rik.vanderlinde@example.com', password: 'password123', role: 'buyer', brokerId: '6708f0c20184bb56bb59a29c'
+    name: 'Laura', lastName: 'Jansen', email: 'laura.jansen@example.com', password: 'password123', role: 'buyer', brokerId: '6708f0c20184bb56bb59a29c'
   },
   {
-    name: 'Karin', lastName: 'Bakker', email: 'karin.bakker@example.com', password: 'password123', role: 'buyer', brokerId: '6708f0c20184bb56bb59a29c'
+    name: 'Tom', lastName: 'Smit', email: 'tom.smit@example.com', password: 'password123', role: 'buyer', brokerId: '6708f0c20184bb56bb59a29c'
   },
   {
-    name: 'Jan', lastName: 'Hendriks', email: 'jan.hendriks@example.com', password: 'password123', role: 'buyer', brokerId: '6708f0c20184bb56bb59a29c'
+    name: 'Eva', lastName: 'Visser', email: 'eva.visser@example.com', password: 'password123', role: 'buyer', brokerId: '6708f0c20184bb56bb59a29c'
   },
   {
-    name: 'Henk', lastName: 'Janssen', email: 'henk.janssen@example.com', password: 'password123', role: 'seller', brokerId: '6708f0c20184bb56bb59a29c'
+    name: 'Daan', lastName: 'de Vries', email: 'daan.devries@example.com', password: 'password123', role: 'seller', brokerId: '6708f0c20184bb56bb59a29c'
   },
   {
-    name: 'Anja', lastName: 'de Boer', email: 'anja.deboer@example.com', password: 'password123', role: 'seller', brokerId: '6708f0c20184bb56bb59a29c'
+    name: 'Isabel', lastName: 'Schouten', email: 'isabel.schouten@example.com', password: 'password123', role: 'seller', brokerId: '6708f0c20184bb56bb59a29c'
   },
   {
-    name: 'Ria', lastName: 'Koster', email: 'ria.koster@example.com', password: 'password123', role: 'seller', brokerId: '6708f0c20184bb56bb59a29c'
+    name: 'Pieter', lastName: 'Meijer', email: 'pieter.meijer@example.com', password: 'password123', role: 'seller', brokerId: '6708f0c20184bb56bb59a29c'
   }
 ];
+
+
 
 // Wachtwoorden hashen
 async function hashPassword(password) {
@@ -73,81 +74,71 @@ async function createUsers() {
 }
 
 // Profielen voor buyers aanmaken
+
 async function createBuyerProfiles(users) {
   const buyers = [
     {
-      user: users[0]._id, // De juiste userId voor de buyer
+      user: users[0]._id,
       profilePicture: getRandomProfilePicture(),
-      name: 'Maarten', lastName: 'Vermeer', age: 70, location: 'Drenthe', nationality: 'Dutch',
-      introduceYourself: 'I am Maarten, the owner of a sustainable organic herb farm. I am looking for a buyer to continue our commitment to organic herb production.',
-      accomplishments: 'Created a successful business in the organic herb industry, focusing on high-quality, sustainable farming.',
-      backgroundExperience: 'I’ve been farming herbs for over 40 years, transitioning to organic farming 15 years ago.',
-      leadershipStyle: 'I’m a hands-on leader, ensuring that the business stays true to its values of quality, sustainability, and innovation.',
-      interests: 'Sustainable farming, herbal medicine, and organic cooking.',
-      vision: 'I want the farm to continue thriving and growing its market while upholding the highest standards of sustainability.',
-      personalValues: 'Sustainability, innovation, and transparency guide my business decisions.',
-      goals: 'I am looking for a buyer who will maintain the integrity of the business and continue to innovate.',
-      reasonForBuying: 'I am retiring and want to pass the business to someone who shares my vision.',
-      freeTimeActivities: 'Reading, herbal gardening, and traveling.',
-      postSaleInvolvement: 'I would like to stay involved in an advisory capacity for a few months after the sale.',
-      timeFrame: ['3 months', '6 months', '12 months', '2 years', '3 years'][Math.floor(Math.random() * 5)],
-      typeOfSale: 'Share Sale',
-      buyerIndustry: 'Agriculture',
-      buyerLocation: 'Drenthe, Netherlands',
-      descriptionOfIdealMatch: 'A buyer who shares a passion for organic farming and is committed to growing the business while respecting the environment.',
-      filters: [],
-      completedPages: []
+      name: 'Laura', lastName: 'Jansen', age: 38, location: 'Rotterdam', nationality: 'Dutch',
+      businessType: 'Buyer',
+      businessInterest: 'Retail Expansion',
+      transactionBackground: 'Looking for profitable businesses in the retail sector to acquire.',
+      keyGoals: 'Seeking businesses with strong local brand presence and potential for scalability.',
+      desiredMarketFit: 'Companies with a proven customer base in the Netherlands, preferably with high-profit margins.',
+      previousExperience: '10 years of experience managing retail businesses and scaling brands.',
+      industryFocus: 'Retail, especially in lifestyle and consumer goods.',
+      idealBusinessCharacteristics: 'Businesses with a recognizable brand, efficient operations, and high revenue potential.',
+      investmentBudgetEUR: '2000000',
+      buyerType: 'Strategic Buyer',
+      reasonForAcquisition: 'Looking to expand my portfolio of businesses and take them to the next level.',
+      postAcquisitionInvolvement: 'Willing to stay involved as CEO or in a leadership role.',
+      idealPartner: 'I am looking for businesses with strong brand recognition and a solid customer base.',
+      timeFrame: '12 months'
     },
     {
       user: users[1]._id,
       profilePicture: getRandomProfilePicture(),
-      name: 'Karin', lastName: 'Bakker', age: 58, location: 'Zeeland', nationality: 'Dutch',
-      introduceYourself: 'I am Karin, and I am seeking a business with strong potential in organic farming.',
-      accomplishments: 'Experienced in growing and scaling businesses in agriculture.',
-      backgroundExperience: 'Worked in sustainable agricultural solutions for over 30 years.',
-      leadershipStyle: 'My leadership is based on collaboration and empowering my team to innovate.',
-      interests: 'Sustainable agriculture, food systems, and environmental conservation.',
-      vision: 'To find and scale sustainable farms that serve the community and the planet.',
-      personalValues: 'Environmental stewardship, community, and innovation.',
-      goals: 'To expand the reach of sustainable farming practices and help businesses grow in ethical ways.',
-      reasonForBuying: 'Looking for the right opportunity to invest in the future of food production.',
-      freeTimeActivities: 'Gardening, hiking, and reading environmental books.',
-      postSaleInvolvement: 'Would prefer a transition period but open to advice afterward.',
-      timeFrame: '6 months',
-      typeOfSale: 'Asset Sale',
-      buyerIndustry: 'Agriculture',
-      buyerLocation: 'Zeeland, Netherlands',
-      descriptionOfIdealMatch: 'A company with a deep commitment to sustainability and scalable growth.',
-      filters: [],
-      completedPages: []
+      name: 'Tom', lastName: 'Smit', age: 45, location: 'Amsterdam', nationality: 'Dutch',
+      businessType: 'Buyer',
+      businessInterest: 'Tech Startups',
+      transactionBackground: 'Looking to acquire innovative tech startups in need of funding.',
+      keyGoals: 'Focus on businesses that are already product-market fit and ready for scaling.',
+      desiredMarketFit: 'Strong demand for innovative tech solutions with global expansion potential.',
+      previousExperience: '15 years in venture capital, investing in and scaling tech startups.',
+      industryFocus: 'Technology, especially in AI, software development, and SaaS.',
+      idealBusinessCharacteristics: 'Startups with a working prototype, initial user base, and potential for global growth.',
+      investmentBudgetEUR: '5000000',
+      buyerType: 'Financial Buyer',
+      reasonForAcquisition: 'Seeking to expand my investment portfolio by acquiring high-potential startups.',
+      postAcquisitionInvolvement: 'I prefer to remain hands-off but will be available for strategic guidance.',
+      idealPartner: 'Looking for tech startups that are ready to scale with the right investment and resources.',
+      timeFrame: '6-12 months'
     },
     {
       user: users[2]._id,
       profilePicture: getRandomProfilePicture(),
-      name: 'Jan', lastName: 'Hendriks', age: 67, location: 'Limburg', nationality: 'Dutch',
-      introduceYourself: 'I am Jan, and I am looking for a profitable agriculture business to invest in.',
-      accomplishments: 'Managed multiple successful organic farms and agricultural businesses.',
-      backgroundExperience: 'Over 40 years in agriculture and organic farming.',
-      leadershipStyle: 'Focused on operational efficiency, sustainability, and profit margins.',
-      interests: 'Sustainable farming, profit optimization, and community-driven agriculture.',
-      vision: 'I aim to increase the profitability and sustainability of the farms I invest in.',
-      personalValues: 'Efficiency, profitability, and sustainability.',
-      goals: 'To take over a business that can be expanded into new markets.',
-      reasonForBuying: 'Retirement savings and a passion for organic farming.',
-      freeTimeActivities: 'Fishing, woodwork, and volunteering in the local community.',
-      postSaleInvolvement: 'Willing to stay on as a consultant to help with the transition.',
-      timeFrame: '12 months',
-      typeOfSale: 'Share Sale',
-      buyerIndustry: 'Agriculture',
-      buyerLocation: 'Limburg, Netherlands',
-      descriptionOfIdealMatch: 'A scalable organic farm with opportunities for growth.',
-      filters: [],
-      completedPages: []
-    }
+      name: 'Eva', lastName: 'Visser', age: 50, location: 'The Hague', nationality: 'Dutch',
+      businessType: 'Buyer',
+      businessInterest: 'Sustainability',
+      transactionBackground: 'Seeking sustainable businesses to align with my personal values.',
+      keyGoals: 'Invest in companies focused on environmental sustainability, circular economy, and green technologies.',
+      desiredMarketFit: 'Strong potential for growth in both B2B and B2C markets.',
+      previousExperience: 'Over 20 years in sustainable business practices and corporate responsibility roles.',
+      industryFocus: 'Sustainability, renewable energy, and eco-friendly products.',
+      idealBusinessCharacteristics: 'Businesses with a proven track record of eco-friendly products or services, and a loyal customer base.',
+      investmentBudgetEUR: '3000000',
+      buyerType: 'Impact Investor',
+      reasonForAcquisition: 'Looking to align investments with sustainability and long-term environmental goals.',
+      postAcquisitionInvolvement: 'Interested in staying involved as an advisor or board member to help grow the business.',
+      idealPartner: 'Looking for businesses that can scale while maintaining environmental integrity.',
+      timeFrame: '9-12 months'
+    },
   ];
 
   await Buyer.insertMany(buyers);
 }
+
 
 // Profielen voor verkopers aanmaken
 async function createSellerProfiles(users) {
@@ -155,76 +146,114 @@ async function createSellerProfiles(users) {
     {
       user: users[3]._id,
       profilePicture: getRandomProfilePicture(),
-      name: 'Henk', lastName: 'Janssen', age: 64, location: 'Friesland', nationality: 'Dutch',
-      introduceYourself: 'I am Henk, selling my dairy farm that has been in the family for generations.',
-      accomplishments: 'Successfully ran a family-owned dairy farm for 40 years.',
-      backgroundExperience: 'Expert in dairy farming and animal husbandry.',
-      leadershipStyle: 'Hands-on, ensuring the team stays focused on quality and productivity.',
-      interests: 'Animal welfare, dairy farming, and environmental sustainability.',
-      vision: 'To find a buyer who will continue the legacy of quality dairy production.',
-      personalValues: 'Hard work, tradition, and quality.',
-      goals: 'Retirement and finding a successor to keep the farm running.',
-      reasonForSelling: 'Retirement and passing on the farm to a new generation.',
-      freeTimeActivities: 'Fishing, hiking, and reading.',
-      postSaleInvolvement: 'Available to help with the transition and offer advice.',
-      timeFrame: '12 months',
+      name: 'Daan', lastName: 'de Vries', age: 52, location: 'Groningen', nationality: 'Dutch',
+      business: 'Daan’s Construction',
+      businessLocation: 'Groningen, Netherlands',
+      salesVolumeEUR: '4000000',
+      resultEUR: '750000',
+      employees: '40',
+      shareToBeTransferred: '100%',
+      transactionBackground: 'Seeking a buyer to continue growing the business regionally.',
+      productMarketFit: 'Strong demand for construction services in the local and regional market.',
+      valueProposition: 'Reputation for high-quality work, customer satisfaction, and reliability.',
+      profitMargin: '18',
+      revenue: '4000000',
+      cashflow: '500000',
+      customerBase: 'Local governments, commercial property developers, and residential customers.',
+      companyCulture: 'Professional, client-focused, and safety-conscious.',
+      introduceYourself: `I’m Daan, the owner of a well-established construction company based in Groningen. We specialize in both commercial and residential construction projects, and over the years, we’ve built a strong reputation for delivering projects on time and within budget. I’m looking for a buyer who can take over the business and continue its growth.`,
+      accomplishments: `I’ve successfully led the company through significant expansion, establishing a loyal customer base and a robust network of suppliers. Our focus on high-quality work has earned us long-term contracts with key clients, including local governments and large real estate developers.`,
+      backgroundExperience: `With over 25 years of experience in the construction industry, I have expertise in project management, site supervision, and team leadership. I’ve overseen projects ranging from residential housing to large commercial developments, ensuring that we meet all client expectations while adhering to industry standards.`,
+      leadershipStyle: `I’m a hands-on leader who believes in leading by example. I foster an environment where quality work is expected, and safety is paramount. I encourage open communication and collaboration to ensure that all projects run smoothly from start to finish.`,
+      descriptionOfIdealMatch: `I am looking for a buyer who is experienced in the construction industry and can bring fresh ideas to grow the business further. The ideal buyer should have strong financial backing, a commitment to high-quality work, and the ability to maintain our established customer relationships.`,
+      interests: 'Construction innovation, architecture, and sustainable building practices.',
+      vision: 'To see Daan’s Construction continue to thrive under new ownership.',
+      personalValues: 'Integrity, reliability, and client satisfaction.',
+      goals: 'Ensuring a smooth transition to new ownership.',
+      reasonForSelling: 'Planning to retire and step away from the business.',
+      freeTimeActivities: 'Fishing, reading, and traveling.',
+      postSaleInvolvement: 'Willing to assist during the transition period.',
+      timeFrame: '6 months',
       typeOfSale: 'Asset Sale',
-      sellerIndustry: 'Agriculture',
-      sellerLocation: 'Friesland, Netherlands',
-      descriptionOfIdealMatch: 'A buyer with a passion for dairy farming and a commitment to high-quality production.',
-      filters: [],
-      completedPages: []
+      sellerIndustry: 'Construction',
+      sellerLocation: 'Groningen, Netherlands'
     },
     {
       user: users[4]._id,
       profilePicture: getRandomProfilePicture(),
-      name: 'Anja', lastName: 'de Boer', age: 55, location: 'Drenthe', nationality: 'Dutch',
-      introduceYourself: 'I am Anja, and I am seeking a buyer for my organic vegetable farm.',
-      accomplishments: 'Established a strong market presence in organic vegetables.',
-      backgroundExperience: 'Over 20 years of experience running organic farms.',
-      leadershipStyle: 'Strong team player with a focus on sustainable growth.',
-      interests: 'Organic farming, environmental conservation, and holistic food production.',
-      vision: 'I want my farm to continue thriving with a buyer who values organic food.',
-      personalValues: 'Sustainability, health, and ethical practices.',
-      goals: 'To transition my business to a buyer who can continue our mission.',
-      reasonForSelling: 'Transition to retirement and new ventures.',
-      freeTimeActivities: 'Yoga, sustainable gardening, and reading.',
-      postSaleInvolvement: 'Would love to be involved in a limited capacity.',
-      timeFrame: '12 months',
-      typeOfSale: 'Asset Sale',
-      sellerIndustry: 'Agriculture',
-      sellerLocation: 'Drenthe, Netherlands',
-      descriptionOfIdealMatch: 'A buyer committed to continuing organic farming practices.',
-      filters: [],
-      completedPages: []
+      name: 'Isabel', lastName: 'Schouten', age: 40, location: 'Utrecht', nationality: 'Dutch',
+      business: 'GreenTech Solutions',
+      businessLocation: 'Utrecht, Netherlands',
+      salesVolumeEUR: '1500000',
+      resultEUR: '300000',
+      employees: '10',
+      shareToBeTransferred: '60%',
+      transactionBackground: 'Looking for a strategic partner to accelerate product development.',
+      productMarketFit: 'High demand for clean-tech solutions in energy and sustainability.',
+      valueProposition: 'Developing cutting-edge technology to reduce energy consumption.',
+      profitMargin: '25',
+      revenue: '1500000',
+      cashflow: '350000',
+      customerBase: 'Government contracts, sustainable companies, and eco-conscious consumers.',
+      companyCulture: 'Innovative, forward-thinking, and sustainability-driven.',
+      introduceYourself: `I’m Isabel, the founder of GreenTech Solutions, a company committed to creating sustainable energy solutions. Our flagship product has been adopted by numerous businesses and government entities looking to reduce their carbon footprint. We’re now seeking a strategic partner to help us scale and expand our product line.`,
+      accomplishments: `I developed a groundbreaking energy-saving product that is making a real impact in both private and public sectors. Through partnerships and product adoption, we’ve built a solid base of customers who are passionate about sustainable energy solutions.`,
+      backgroundExperience: `With a background in engineering and business, I’ve led GreenTech Solutions through its early stages of product development and market entry. My experience includes raising capital, managing product R&D, and overseeing a small team of engineers and sales professionals.`,
+      leadershipStyle: `I lead with a strong vision for the future and foster a culture of collaboration and innovation. I believe in empowering my team to think outside the box and pursue new ideas that will help us create sustainable solutions that meet the needs of our customers.`,
+      descriptionOfIdealMatch: `I’m looking for a partner who shares my passion for clean energy and sustainability. The ideal partner will have experience in scaling tech companies and bringing innovative products to market. Together, we can take GreenTech Solutions to the next level and make a significant impact in the global market.`,
+      interests: 'Renewable energy, clean technology, and environmental activism.',
+      vision: 'To expand GreenTech Solutions globally and revolutionize the energy sector.',
+      personalValues: 'Sustainability, innovation, and integrity.',
+      goals: 'To scale our product offerings and impact as many industries as possible.',
+      reasonForSelling: 'Looking for a partner to accelerate growth and development.',
+      freeTimeActivities: 'Cycling, cooking, and volunteering for environmental causes.',
+      postSaleInvolvement: 'Willing to stay involved as a product development advisor.',
+      timeFrame: '9 months',
+      typeOfSale: 'Share Sale',
+      sellerIndustry: 'CleanTech',
+      sellerLocation: 'Utrecht, Netherlands'
     },
     {
       user: users[5]._id,
       profilePicture: getRandomProfilePicture(),
-      name: 'Ria', lastName: 'Koster', age: 61, location: 'North Brabant', nationality: 'Dutch',
-      introduceYourself: 'I am Ria, selling my farm with a focus on organic grains.',
-      accomplishments: 'Ran a successful grain farm with organic certification.',
-      backgroundExperience: 'Extensive experience in farming and sustainable practices.',
-      leadershipStyle: 'Empowering my team to innovate while adhering to the highest quality standards.',
-      interests: 'Sustainable agriculture, organic grains, and local food systems.',
-      vision: 'To ensure the farm continues producing the highest-quality organic grains.',
-      personalValues: 'Integrity, sustainability, and quality.',
-      goals: 'Find a buyer who can grow the farm into a sustainable, thriving business.',
-      reasonForSelling: 'I am looking to retire and hand over the farm.',
-      freeTimeActivities: 'Cooking, traveling, and hiking.',
-      postSaleInvolvement: 'Willing to offer advice and guidance to ensure a smooth transition.',
-      timeFrame: '6 months',
-      typeOfSale: 'Share Sale',
-      sellerIndustry: 'Agriculture',
-      sellerLocation: 'North Brabant, Netherlands',
-      descriptionOfIdealMatch: 'A buyer with a strong background in agriculture and a commitment to sustainability.',
-      filters: [],
-      completedPages: []
+      name: 'Pieter', lastName: 'Meijer', age: 60, location: 'Leiden', nationality: 'Dutch',
+      business: 'Pieter’s Logistics',
+      businessLocation: 'Leiden, Netherlands',
+      salesVolumeEUR: '6000000',
+      resultEUR: '1200000',
+      employees: '50',
+      shareToBeTransferred: '80%',
+      transactionBackground: 'Looking for a buyer to take over logistics operations.',
+      productMarketFit: 'Strong demand for efficient logistics and supply chain solutions.',
+      valueProposition: 'Offering efficient logistics with a customer-centric approach.',
+      profitMargin: '15',
+      revenue: '6000000',
+      cashflow: '1200000',
+      customerBase: 'Large retail chains, manufacturers, and wholesalers.',
+      companyCulture: 'Reliable, service-oriented, and results-driven.',
+      introduceYourself: `I’m Pieter, the founder of a logistics company offering transportation, warehousing, and distribution services. Over the years, we have built a reputation for being reliable and customer-focused. I’m looking for a buyer who can take over the business and continue its growth in the logistics sector.`,
+      accomplishments: `I’ve built a trusted logistics company from the ground up, establishing strong relationships with key players in retail and manufacturing. Our network of warehouses and fleet of vehicles allows us to offer customized services to meet the needs of our clients.`,
+      backgroundExperience: `With over 30 years of experience in the logistics industry, I have managed operations in transportation, warehousing, and supply chain management. My team and I have worked hard to build efficient processes and ensure that our customers receive the highest level of service.`,
+      leadershipStyle: `My leadership style is hands-on and focused on delivering results. I value customer satisfaction and believe in leading by example. I encourage my team to be proactive and maintain high standards in everything we do.`,
+      descriptionOfIdealMatch: `I am looking for a buyer with experience in logistics or supply chain management who can take the business to the next level. The ideal buyer will have strong management skills, financial resources, and a commitment to maintaining the high standards of customer service we’ve built.`,
+      interests: 'Logistics innovation, transportation efficiency, and supply chain management.',
+      vision: 'To see Pieter’s Logistics grow into a leading logistics provider in Europe.',
+      personalValues: 'Reliability, efficiency, and customer satisfaction.',
+      goals: 'To ensure a smooth transition and continued growth for the company.',
+      reasonForSelling: 'Looking to retire and step away from the business.',
+      freeTimeActivities: 'Golfing, reading, and spending time with family.',
+      postSaleInvolvement: 'Willing to provide operational support during the transition.',
+      timeFrame: '12 months',
+      typeOfSale: 'Asset Sale',
+      sellerIndustry: 'Logistics',
+      sellerLocation: 'Leiden, Netherlands'
     }
   ];
 
   await Seller.insertMany(sellers);
 }
+
+
 
 // Database creëren
 async function createDatabase() {
