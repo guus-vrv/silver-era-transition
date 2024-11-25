@@ -3,9 +3,11 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors'); // to handle cross origin requests
 const path = require('path');
-
+const next = require('next');
 
 const app = express();
+const nextApp = next({ dev: process.env.NODE_ENV !== 'production', dir: path.join(__dirname, '../landing')});
+const handle = nextApp.getRequestHandler();
 
 // Connect to MongoDB
 connectDB();
@@ -29,24 +31,30 @@ app.get('/upload-file/:filename', (req, res) => {
   });
 });
 
-/*
-app.use('/upload-file', express.static(path.join(__dirname, 'upload-file'), {
-    setHeaders: (res, filePath) => {
-      const fileName = path.basename(filePath);  // originele bestandsnaam
-      res.setHeader('Content-Disposition', `inline; filename="${fileName}"`);  // inline betekent tonen in browser
-      res.setHeader('Content-Type', 'application/octet-stream'); // Dit kan ook helpen om bestandstype te identificeren
-    }
-  }));
-
-*/
-
 app.use('/api/user', require('./routes/user'));
 app.use('/api/message', require('./routes/message'));
 app.use('/api/groupchat', require('./routes/groupchat'));
 app.use('/api/room', require('./routes/room'));
 app.use('/api/profiles', require('./routes/profiles')); // Add this line to use profiles routes
 
+// code hier
 
-// Start the server
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Integrate Next.js
+nextApp.prepare().then(() => {
+
+  // Gebruik Express voor je routes - dit is poort 5001, de andere is poort 3000.
+  app.get('/landing', (req, res) => {
+    // Dit laat Next.js de /landing route renderen (SSR)
+    console.log('landing');
+    return nextApp.render(req, res, '/landing');
+  });
+
+  // Zorg ervoor dat andere routes door Next.js worden behandeld
+  app.all('*', (req, res) => {
+    return handle(req, res);  // Laat Next.js de rest van de routes beheren
+  });
+
+  // Start the server
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+});

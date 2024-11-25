@@ -1,0 +1,51 @@
+.comparison {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.column {
+  flex: 1;
+  max-width: 600px;
+}
+
+.header {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2a424d;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #5b7d8a;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.list li strong {
+  color: #2a424d;
+}
+
+.divider {
+  width: 3px;
+  background-color: #d0d0d0;
+  height: auto;
+  margin: 0 20px;
+}

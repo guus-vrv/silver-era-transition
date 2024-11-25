@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Register from './components/Auth/Register';
+import './index.css';
 import Login from './components/Auth/Login';
 import Home from './components/Home';
 import Layout from './components/Layout';
@@ -21,8 +22,7 @@ import Filters from './components/BuyersSellers/Filters';
 import SelectProfiles from './components/Brokers/SelectProfiles';
 import SelectChatProfiles from './components/Brokers/SelectChatProfiles';
 import SelectGroupChat from './components/Brokers/SelectGroupChat';
-
-
+import LandingPage from './components/LandingPage';
 
 const App = () => {
 
@@ -38,11 +38,11 @@ const App = () => {
 
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Home />,
+      path: '/',
+      element: <LandingPage />, // This will trigger the redirect
       errorElement: <div>Error occurred</div>,
-    },
-    {
+    }, 
+    { 
       path: "/room/:roomNumber",
       element:(< Layout >
         <Room />
