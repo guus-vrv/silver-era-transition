@@ -131,7 +131,7 @@ const LandingPage = () => {
 
     
       <header className="absolute inset-x-0 top-0 z-50 bg-[#385454]">
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
+        <nav aria-label="Global" className="flex items-center justify-between  p-6 lg:px-8">
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
@@ -165,52 +165,44 @@ const LandingPage = () => {
             </a>
           </div>
         </nav>
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  alt=""
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                  className="h-8 w-auto"
-                />
-              </a>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-gray-50"
-                  >
-                    Log in
-                  </a>
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
+        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden ">
+  <div className="fixed inset-0 z-50"  />
+  <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#385454] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+    <div className="flex items-center justify-between">
+      <a href="#" className="-m-1.5 p-1.5">
+        <span className="sr-only">Your Company</span>
+        <img alt="" src={customIcon} className="h-8 w-auto" />
+      </a>
+      <button
+        type="button"
+        onClick={() => setMobileMenuOpen(false)}
+        className="-m-2.5 rounded-md p-2.5 text-white"
+      >
+        <span className="sr-only">Close menu</span>
+        <XMarkIcon aria-hidden="true" className="size-6" />
+      </button>
+    </div>
+    <div className="mt-12 flow-root">
+      <div className="-my-6 divide-y divide-gray-500/10">
+        <div className="py-6">
+          <a
+            href="/login"
+            className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold text-white hover:bg-gray-50"
+          >
+            Log in
+          </a>
+          <a
+            href="/register"
+            className="-mx-3 block rounded-lg px-3 py-4 text-2xl font-semibold text-white hover:bg-gray-50"
+          >
+            Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </DialogPanel>
+</Dialog>
+
       </header>
 
 
@@ -220,35 +212,24 @@ const LandingPage = () => {
   <div
       className="relative isolate px-6 pt-14 lg:px-8"
       style={{
-        background: "linear-gradient(to bottom, #385454, #fff)",
+        background: "linear-gradient(to bottom, #000, #385454)",
         height: "100vh",
       }}
     >
-  <div
-    style={{
-      backgroundImage: `url(${heroImage})`,
-      backgroundSize: "cover",
-      backgroundPosition: "right",
-      backgroundRepeat: "no-repeat",
-      height: "100vh",
-      width: "100%",
-      filter: "blur(11px)",
-      transform: "scale(0.8)",
-    }}
-    className="absolute inset-y-0 right-0 -z-10"
-  />
 
-  <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-    <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-      <div className="relative rounded-full px-3 py-1 text-sm/6 text-black ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-        Silver Era Transition
-      </div>
-    </div>
+<div className="flex flex-col h-full items-center justify-center mx-auto max-w-2xl">
     <div className="text-center">
-      <h1 className="text-balance text-3xl font-semibold tracking-tight text-black sm:text-5xl">
-        The European Crossroad For Generational Transitions
+      <div className="sm:flex sm:justify-center mb-5">
+        <div className="relative rounded-full px-3 py-1 text-sm/6 text-white ring-1 ring-gray-300/10 hover:ring-gray-300/20">
+          Silver Era Transition
+        </div>
+      </div>
+      </div>
+    <div className="text-center">
+      <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-5xl sm:mt-8">
+        The European Crossroad For <span className="border-b border-b-2 border-white">Generational Transitions</span>
       </h1>
-      <p className="mt-8 text-pretty text-lg font-medium text-gray-900 sm:text-xl/8">
+      <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">
         AI Powered Matchmaking for Smooth Company Sales & Acquisition
       </p>
       <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -311,9 +292,9 @@ const LandingPage = () => {
 
 
     <div className="overflow-hidden bg-white py-24 sm:py-32">
-  <div id="features" className="mx-auto max-w-7xl px-6 lg:px-8">
-    <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-      <div className="flex justify-end">
+  <div id="features" className=" mx-auto px-6 lg:px-8">
+    <div className="flex flex-col lg:flex-row mx-auto max-w-2xl gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none">
+      <div className="flex justify-end order-last lg:order-first">
         <img
           alt="Product screenshot"
           src={newImage}
@@ -325,7 +306,7 @@ const LandingPage = () => {
       <div  className="lg:pl-8 lg:pt-4 ml-8">
         <div className="lg:max-w-lg">
           <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            The SET way
+          <span className="border-b border-b-2 border-black">The SET way</span> 
           </p>
  
           <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
@@ -351,41 +332,45 @@ const LandingPage = () => {
 <div
   className="bg-white py-24 sm:py-32"
   style={{
-    background: "linear-gradient(to bottom, #fff, #385454)",
+    background: "linear-gradient(to bottom, #000, #385454)",
     minHeight: "100vh",
   }}
 >
   <div className="mx-auto max-w-7xl px-6 lg:px-8">
     <div className="mx-auto max-w-2xl lg:text-center">
-      <h2 className="text-base/7 font-semibold text-black">How does it work?</h2>
-      <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-black sm:text-5xl lg:text-balance mt-8">
+      <h2 className="text-base/7 font-semibold text-white text-center">How does it work?</h2>
+      <p className="mt-2 text-pretty text-4xl text-center font-semibold tracking-tight text-white sm:text-5xl lg:text-balance mt-8">
         Jumpstarting The Journey
       </p>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-8 hidden sm:flex">
         <img
           alt="Process screenshot"
           src={processImage}
           width={2432}
           height={1442}
-          className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
+          className=" w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
         />
       </div>
     </div>
     <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-      <dl className="grid max-w-xl grid-cols-3 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-3 lg:gap-x-12 lg:gap-y-12">
-        {features.map((feature) => (
-          <div key={feature.name} className="relative pl-16">
-            <dt className="text-base/7 font-semibold text-white">
-              <div className="absolute left-0 top-0 flex size-10 items-center justify-center rounded-lg bg-[#385454]">
-                <feature.icon aria-hidden="true" className="size-6 text-white" />
-              </div>
-              {feature.name}
-            </dt>
-            <dd className="mt-2 text-base/7 text-white">{feature.description}</dd>
+  <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:max-w-none lg:grid-cols-3 lg:gap-x-12 lg:gap-y-12">
+    {features.map((feature) => (
+      <div key={feature.name} className="relative pl-16 flex flex-col items-start sm:items-center">
+        {/* Icon and Heading */}
+        <dt className="text-base/7 font-semibold text-white flex items-center space-x-4">
+          <div className="flex items-center justify-center rounded-lg bg-[#385454] p-2">
+            <feature.icon aria-hidden="true" className="text-white size-6" />
           </div>
-        ))}
-      </dl>
-    </div>
+          <span>{feature.name}</span>
+        </dt>
+        
+        {/* Description */}
+        <dd className="mt-2 text-base/7 text-white">{feature.description}</dd>
+      </div>
+    ))}
+  </dl>
+</div>
+
   </div>
 </div>
 
@@ -393,18 +378,20 @@ const LandingPage = () => {
 <div className="bg-white py-24 sm:py-32">
   <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col lg:flex-row items-center">
     {/* Left Image Section */}
-    <div className="w-full lg:w-1/2">
+    <div className="flex justify-end order-last lg:order-first">
+   
+
       <img
         src={connectImage} // Replace with your image source
         alt="Illustration of finding the right match"
-        className="rounded-xl shadow-xl"
+        className="rounded-xl shadow-xl mt-8"
       />
     </div>
     {/* Right Text Section */}
     <div className="w-full lg:w-1/2 lg:pl-24">
       <div className="mx-auto max-w-2xl lg:text-left">
         <p className="text-pretty text-4xl font-semibold tracking-tight text-black sm:text-5xl lg:text-balance">
-          Find the right match
+          Find <span className="border-b border-b-2 border-black">the right match</span>
         </p>
       </div>
       <div className="mx-auto max-w-10xl lg:text-left mt-8">
@@ -440,7 +427,7 @@ const LandingPage = () => {
     <div className="w-full lg:w-1/2 lg:pr-24">
       <div className="mx-auto max-w-2xl lg:text-left">
         <p className="text-pretty text-4xl font-semibold tracking-tight text-black sm:text-5xl lg:text-balance">
-          Streamline your process
+        <span className="border-b border-b-2 border-black">Streamline</span> your process
         </p>
       </div>
       <div className="mx-auto max-w-10xl lg:text-left mt-8">
@@ -467,7 +454,7 @@ const LandingPage = () => {
       <img
         src={flowImage} // Replace with your image source
         alt="Illustration of finding the right match"
-        className="rounded-xl shadow-xl"
+        className="rounded-xl shadow-xl mt-8"
       />
     </div>
   </div>
@@ -492,7 +479,7 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            <div>
+            <div className='hidden sm:block'>
                 <p class="font-semibold text-gray-800 dark:text-white">Quick Links</p>
 
                 <div class="flex flex-col items-start mt-5 space-y-2">
