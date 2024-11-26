@@ -496,17 +496,17 @@ const LandingPage = () => {
                 <div className="space-y-4 mt-5">
 
                   <div class="flex items-center space-x-2">
-                      <a href="mailto:info@tomatoworld.nl" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300">info@tomatoworld.nl</a>
+                      <a href="mailto:info@tomatoworld.nl" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300">SETdenhaag@gmail.com</a>
                   </div>
 
                   <div class="flex items-center space-x-2">
                       <p class="text-gray-600 dark:text-gray-300">
-                          TomatoWorld, <span class="block">Zwethlaan 2, 2675 LB Honselersdijk</span>
+                          <span class="block">Jupiterkade 7, 2516 BS Den Haag, Netherlands</span>
                       </p>
                   </div>
 
                   <div class="flex items-center space-x-2">
-                      <a href="tel:+31174612525" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300">0174 612 525</a>
+                      <a href="tel:+31174612525" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300">+39 3275361612</a>
                   </div>
               </div>
 
