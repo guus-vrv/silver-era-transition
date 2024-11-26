@@ -6,7 +6,7 @@ import { Bars3BottomLeftIcon, MagnifyingGlassIcon, CheckBadgeIcon } from '@heroi
 
 
 import customIcon from '../images/set-logo.webp';
-import oldImage from '../images/image49.webp';
+import oldImage from '../images/image499.png';
 import newImage from '../images/newway.jpg';
 import processImage from '../images/processImage.png';
 import heroImage from '../images/hero.png';
