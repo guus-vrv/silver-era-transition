@@ -478,18 +478,6 @@ const LandingPage = () => {
                     </button>
                 </div>
             </div>
-
-            <div className='hidden sm:block'>
-                <p class="font-semibold text-gray-800 dark:text-white">Quick Links</p>
-
-                <div class="flex flex-col items-start mt-5 space-y-2">
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">About Us</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Service</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Pricing</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Blog</p>
-                </div>
-            </div>
-
             <div className='w-full'>
                 <p class="font-semibold text-gray-800 dark:text-white">Contact Us</p>
 
