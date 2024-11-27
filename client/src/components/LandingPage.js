@@ -466,7 +466,7 @@ const LandingPage = () => {
 
 <footer id="contact" class="bg-blue-100/80 font-sans dark:bg-[#385454]">
     <div class="container px-6 py-12 mx-auto">
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+        <div class="grid grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4 items-center">
             <div class="sm:col-span-2">
                 <h1 class="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">Subscribe our newsletter to get an update.</h1>
 
@@ -478,6 +478,7 @@ const LandingPage = () => {
                     </button>
                 </div>
             </div>
+
             <div className='w-full'>
                 <p class="font-semibold text-gray-800 dark:text-white">Contact Us</p>
 

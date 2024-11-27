@@ -22,6 +22,13 @@ const Register = () => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const handleNoBrokerClick = () => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      brokerEmail: 'SETdenhaag@gmail.com',
+    }));
+  };
+
   const onSubmit = async e => {
     e.preventDefault(); // prevent page reload
     setError(''); // Clear any previous errors
@@ -107,7 +114,17 @@ const Register = () => {
             className="input-field"
             required
           />
+         
         )}
+
+
+          {(role === 'buyer' || role === 'seller') && (
+                    <a href="#" className="register-link" style={{textDecoration: 'underline', marginBottom: '2rem'}} onClick={handleNoBrokerClick}>
+                      No broker? Click here
+                    </a>
+          )}
+
+
 
         <button type="submit" className="submit-button">Register</button>
       </form>
