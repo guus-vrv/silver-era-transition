@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon component
-import { faHome, faUser, faBookmark, faInfoCircle, faEnvelope, faSearch, faRightFromBracket, faGauge } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
+import { faHome, faUser, faBookmark, faInfoCircle, faEnvelope, faSearch, faRightFromBracket, faGauge, faBug } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 import './styles/SideNav.css'; // Add custom CSS for the sidebar
 import customIcon from '../images/set-logo.webp';
 
@@ -77,6 +77,9 @@ const SideNav = () => {
         </li>
          <li>
           <Link to="https://docs.google.com/document/d/1mylEajDY7N8dj38b9Ou7Gu9KUbZzOBZdmWpsNMLDQLY/edit?tab=t.0" target='_blank'><FontAwesomeIcon icon={faInfoCircle} /> <span className='menu-link'>Read the SET guide</span></Link>
+        </li>
+        <li>
+          <Link to="https://forms.gle/qk2mXxxNNe2riVJm8" target='_blank'><FontAwesomeIcon icon={faBug} /> <span className='menu-link'>Report Issues</span></Link>
         </li>
         <li className="dropdown">
           <span className="dropdown-toggle" onClick={() => toggleDropdown("account")}>
