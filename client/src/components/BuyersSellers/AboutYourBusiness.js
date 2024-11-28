@@ -11,7 +11,6 @@ const formatCurrency = (value) => {
 };
 
 const AboutYourBusiness = ({ onComplete }) => {
-  // Define the form state
   const [role, setRole] = useState('');
   const [formData, setFormData] = useState({
     profilePicture: {

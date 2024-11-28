@@ -35,7 +35,7 @@ const BasicsForm = ({onComplete}) => {
     const fetchProfile = async () => {
         try {
             const res = await axiosInstance.get(`${API_URL}/api/profiles`);
-            const profilePictureUrl = res.data.profilePicture ? `${API_URL}${res.data.profilePicture}` : ''; // Construct full URL
+            const profilePictureUrl = res.data.profilePicture ? `${API_URL}${res.data.profilePicture}` : ''; // Load image
             console.log(res.data);
             setRole(res.data.user.role);
             setFormData(res.data);

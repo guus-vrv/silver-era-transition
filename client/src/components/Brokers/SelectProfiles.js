@@ -17,8 +17,8 @@ const SelectProfiles = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const loc_groupChat = location.state?.groupChat
-  const loc_profilesToAdd = location.state?.profilesToAdd;
+  const loc_groupChat = location.state?.groupChat // save group chat to add to new room if the user came from another page - WARNING: DIFFERENT NAME FOR THE SAME VARIABLE AS IN ADDROOM.JS
+  const loc_profilesToAdd = location.state?.profilesToAdd; // save profiles to add to new room if the user came from another page - WARNING: DIFFERENT NAME FOR THE SAME VARIABLE AS IN ADDROOM.JS
 
   useEffect(() => {
     if (loc_profilesToAdd)
@@ -32,7 +32,6 @@ const SelectProfiles = () => {
     try {
       const response = await axiosInstance.get(`${API_URL}/api/profiles/broker-connected-users`);
       setProfiles(response.data.profiles);
-      // dan wanneer de profielen gefetcht zijn komt er de optie voor de broker om een gebruiker te selecteren. Dit wordt gelijk aan het saved/skipped profile pagina
     } catch (error) {
       console.error('Error fetching profiles data:', error);
     }
@@ -52,7 +51,6 @@ const SelectProfiles = () => {
   };
 
   const addProfile = (profileId) => {
-    // Implement your invite functionality here
       // add profile to state variable
   
       setProfilesToAdd([...profilesToAdd, profileId]);

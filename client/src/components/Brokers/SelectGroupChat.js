@@ -17,13 +17,13 @@ const SelectGroupChat = () => {
 
   const brokerId = localStorage.getItem('userId'); // Make sure this key matches where you store the user ID
 
-  const loc_groupChat = location.state?.groupChat || "";
-  const loc_profilesToAdd = location.state?.profilesToAdd || [];
+  const loc_groupChat = location.state?.groupChat || ""; // save group chat to add to new room if the user came from another page - WARNING: DIFFERENT NAME FOR THE SAME VARIABLE AS IN ADDROOM.JS
+  const loc_profilesToAdd = location.state?.profilesToAdd || [];  // save profiles to add to new room if the user came from another page - WARNING: DIFFERENT NAME FOR THE SAME VARIABLE AS IN ADDROOM.JS
 
   useEffect(() => {
     if (loc_groupChat)
     {
-        setSelectedChat(loc_groupChat);
+        setSelectedChat(loc_groupChat); // if the group chat was already selected -> display it as the active group chat
     }
     
   }, []);

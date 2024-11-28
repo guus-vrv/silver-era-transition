@@ -36,7 +36,6 @@ const SkippedProfiles = () => {
   };
 
   const handleInvite = async (skippedProfileId) => {
-    // Implement your invite functionality here
       try {
         // creates group chat
         
@@ -80,7 +79,6 @@ const SkippedProfiles = () => {
               className="profile-picture"
             />
             <h3 className="profile-name">{profile.profile.name}</h3>
-            {/* HIER IN DE TOEKOMST READ MORE FUNCTIE */}
             {profile.hasConnection ? (
               <button className="invite-button" onClick={() => navigate(`/group-chat/${profile.groupChat._id}`)}>
               View Chat

@@ -9,7 +9,7 @@ const Filters = () => {
   const [priority, setPriority] = useState('');
   const [value, setValue] = useState(null);
   const [filters, setFilters] = useState([]);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false); // edit mode means if the filter is already added, when the user clicks the filter again or clicks edit filter the filter is saved and can be changed
 
   const filterOptions = [
     "Age",
@@ -43,13 +43,10 @@ const Filters = () => {
   const handleFilterChange = (event) => {
 
     setSelectedFilter(event.target.value);
-    
-    // als filter al bestaat, wil je eigenlijk de huidige data erin doen
+  
 
-    const index = filters.findIndex(f => f.filter === event.target.value); // hier zit error volgens mij
-    
-    // hebben index nodig, dan vervolgens 
-
+    const index = filters.findIndex(f => f.filter === event.target.value); 
+  
     if (index !== -1) {
         setEditMode(true);
         setPriority(filters[index].priority);

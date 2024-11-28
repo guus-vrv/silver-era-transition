@@ -98,7 +98,7 @@ const DiscoverProfile = () => {
     }));
   };
 
-  const truncateText = (text, section) => {
+  const truncateText = (text, section) => { // shorten text if it is too lang and add read more link later
     const isExpanded = expandedSections[section];
     if (text.length <= 200 || isExpanded) {
       return text;
@@ -138,7 +138,7 @@ const DiscoverProfile = () => {
   };
 
   const handleBookmark = async (receiverId) => {
-    // what if they save then skip? bookmarked boolean
+    // Logic for saving and skipping (if you want to save a user but not message them straight away)
 
         if(bookmarked)
         {
@@ -191,8 +191,7 @@ const DiscoverProfile = () => {
 const handleSkip = async (receiverId) => {
 
   if (!bookmarked)
-    // alleen als de gebruiker niet opgeslagen is, voegen we ze toe aan saved profiles
-    // anders gewoon door naar de volgende zonder API requests te maken
+    // if the user is not saved, but only skipped we move on to the next profile
   {
 
     try {

@@ -22,7 +22,7 @@ const EditProfile = () => {
   const fetchCompletion = async() => {
     try {
       const res = await axiosInstance.get(`${API_URL}/api/profiles`);
-      setProgress(Math.floor(res.data.completedPages.length * (1/3) * 100));
+      setProgress(Math.floor(res.data.completedPages.length * (1/3) * 100)); // percentage of pages complete in my profile section
     }
     catch (err)
     {

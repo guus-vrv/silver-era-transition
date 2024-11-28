@@ -11,7 +11,7 @@ const MyClients = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    // Fetch sample data (replace this with your data fetching logic)
+    // Fetch data 
     const fetchRooms = async () => {
       
       try {

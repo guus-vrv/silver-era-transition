@@ -52,8 +52,7 @@ const Login = () => {
       <div className="login-form">
         <h1 className="login-title">Login</h1>
 
-        {error && <div className="error-message">{error}</div>} {/* Display error message */}
-
+        {error && <div className="error-message">{error}</div>} 
         <form onSubmit={onSubmit} className="form">
           <input
             type="email"

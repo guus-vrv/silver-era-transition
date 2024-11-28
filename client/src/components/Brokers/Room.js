@@ -18,7 +18,6 @@ const Room = () => {
       try {
         const response = await axiosInstance.get(`${API_URL}/api/room/${roomNumber}`);
         setRoom(response.data);
-        //response.data -> reports [], participants [], phase
       } catch (error) {
         console.error('Error fetching room data:', error);
       }
@@ -28,6 +27,7 @@ const Room = () => {
 
   }, []);
 
+  // render tab based on button selected
   const renderTab = () => {
     switch (activeTab) {
 

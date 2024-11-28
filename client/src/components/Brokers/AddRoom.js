@@ -20,17 +20,14 @@ const AddRoom = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const profilesToAdd = location.state?.profilesToAdd;
-  const groupChat = location.state?.groupChat;
+  const profilesToAdd = location.state?.profilesToAdd; // save profiles to add to new room if the user came from another page
+  const groupChat = location.state?.groupChat; // save group chat to add to new room if the user came from another page
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axiosInstance.post(`${API_URL}/api/room`, {phase: formData.phase, roomNumber: roomNumber, profilesToAdd: profilesToAdd, groupChat: groupChat });
-
-      
-
       // Redirect back to dashboard or another page after successful submission
       navigate('/dashboard');
     } catch (error) {

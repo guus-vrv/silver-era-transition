@@ -24,7 +24,7 @@ const SideNav = () => {
   }, [location]);
 
   if (!role) {
-    return null; // You can show a loading spinner or placeholder if the role is not yet available
+    return null;
   }
 
   const toggleDropdown = (menu) => {
