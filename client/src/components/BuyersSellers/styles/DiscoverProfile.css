@@ -1,154 +1,191 @@
+/* General Styles */
 .discover-profile-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Full viewport height */
-    overflow-y: auto;
-    font-family: 'Nunito Sans', sans-serif;
-    padding: 2rem;
-  }
-
-  .left-box {
-    order: 1;
-  }
- 
-  .right-box {
-    order: 2;
-  }
-  
-  .top-container {
-    flex: 0 0 30%; /* Takes up 30% of the height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .profile-box {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 80%;
-    text-align: center;
-    position: relative; /* For absolute positioning of the save icon */
-  }
-  
-  .profile-picture {
-    border-radius: 50%; /* Circular profile picture */
-    width: 100px; /* Fixed size for profile picture */
-    height: 100px; /* Fixed size for profile picture */
-  }
-  
-  .user-name {
-    margin: 10px 0;
-    font-size: 24px;
-  }
-  
-  .bio {
-    font-size: 14px;
-    margin: 10px 0;
-  }
-  
-  .save-profile {
-    position: absolute; /* Position the save icon in the top right */
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .bottom-container {
-    flex: 0 0 70%; /* Takes up 70% of the height */
-    display: flex;
-    overflow-y: auto;
-    width: 100%;
-  }
-  
-  .left-box {
-    flex: 0 0 70%; /* 70% width */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .right-box {
-    flex: 0 0 30%; /* 30% width */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  
-  .info-box {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 1rem;
-    margin-bottom: 10px;
-  }
-
-  .info-box p {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  
-  .invite-box {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .invite-input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .invite-button,
-  .skip-button,
-  .edit-filters {
-    padding: 10px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .invite-button:hover,
-  .edit-filters:hover {
-    background-color: #0056b3;
-  }
-
-  
-.filter-box {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+  height: 100vh; /* Full viewport height */
+  font-family: 'Inter', sans-serif; /* Clean and professional font */
+  padding: 2rem;
 }
 
-.filter-title {
+/* Top Container */
+.top-container {
+  flex: 0 0 25%; /* Reduced height for a sleek look */
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
+.profile-box {
+  border: none;
+  border-radius: 12px;
+  padding: 25px;
+  width: 70%;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #f1f1f1); /* Subtle gradient for depth */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Elegant shadow effect */
+  position: relative; /* For save icon positioning */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture {
+  border-radius: 50%; /* Circular profile picture */
+  width: 120px; /* Larger for emphasis */
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #e0e0e0; /* Subtle border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-name {
+  margin: 15px 0;
+  font-size: 26px;
+  font-weight: 600;
+  color: #333; /* Professional dark text */
+}
+
+.bio {
+  font-size: 15px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Save Icon */
+.save-profile {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px; /* Prominent size */
+  background: none;
+  border: none;
+  color: #007BFF; /* Professional blue */
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.save-profile:hover {
+  transform: scale(1.1);
+  color: #0056b3; /* Slightly darker hover effect */
+}
+
+/* Bottom Container */
+.bottom-container {
+  flex: 0 0 75%; /* Larger section for content */
+  display: flex;
+  width: 100%;
+  gap: 24px;
+}
+
+.left-box {
+  flex: 0 0 65%; /* Slightly larger for content-heavy side */
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.right-box {
+  flex: 0 0 35%;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-box,
+.invite-box,
+.filter-box {
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.invite-box, .filter-box {
+  display: flex;
+  justify-content: center;
+}
+
+.invite-profile-container {
+  text-align: center;
+}
+
+.info-box:hover,
+.invite-box:hover,
+.filter-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.info-box p,
+.invite-box p {
+  font-size: 16px;
+  color: #444;
+}
+
+/* Inputs */
+.invite-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.invite-input:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+.invite-button,
+.skip-button,
+.show-filters {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  background-color: #024d3f;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.invite-button:hover {
+  background-color: #226c60;
+}
 
 .skip-button {
-  background-color: #ff5e00;
+  background-color: #424d4b;
+  margin-top: 1rem;
 }
 
 .skip-button:hover {
-  background-color: #ff5e00c0;
+  background-color: #555958;
 }
 
+.show-filters {
+  background-color: #0b8847;
+}
+
+.show-filters:hover {
+  background-color: #226c60;
+}
+
+/* Filters Section */
 .filters {
   display: flex;
   flex-direction: row;
@@ -158,10 +195,15 @@
   padding: 1rem;
 }
 
+.filters p {
+  font-size: 16px;
+  color: #333;
+}
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   .user-name {
-    font-size: 1rem;
+    font-size: 18px;
   }
 
   .profile-box {
@@ -169,35 +211,23 @@
   }
 
   .save-profile {
-    font-size: 1rem;
-  }
-
-  .filter-title {
-    display: none;
+    font-size: 20px;
   }
 
   .bottom-container {
     flex-direction: column;
   }
 
-  .left-box {
-    order: 2;
-  }
-
+  .left-box,
   .right-box {
-    order: 1;
+    flex: 1 1 100%;
   }
 
   .discover-profile-container {
-    padding: 0.5rem;
+    padding: 1rem;
   }
 
   .info-box p {
-    font-size: 1rem;
+    font-size: 14px;
   }
-
-  .business {
-    margin-top: 1rem;
-  }
-
 }

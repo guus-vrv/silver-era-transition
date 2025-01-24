@@ -28,8 +28,8 @@ const AboutYourBusiness = ({ onComplete }) => {
     productMarketFit: '',
     valueProposition: '',
     profitMargin: '',
-    revenue: '',
-    cashflow: '',
+    revenueEUR: '',
+    cashflowEUR: '',
     customerBase: '',
     companyCulture: ''
   });
@@ -86,7 +86,7 @@ const AboutYourBusiness = ({ onComplete }) => {
     try {
       await axiosInstance.put(`${API_URL}/api/profiles`, {
         ...formData,
-        completedPages: formData.completedPages.includes("MoreAboutYou") ? formData.completedPages : [...formData.completedPages, "MoreAboutYou"]
+        completedPages: formData.completedPages.includes("AboutYourBusiness") ? formData.completedPages : [...formData.completedPages, "AboutYourBusiness"]
       });
       setSuccess('Successfully saved profile');
       onComplete();
@@ -164,15 +164,25 @@ const AboutYourBusiness = ({ onComplete }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="shareToBeTransferred">Share to Be Transferred</label>
+          <label htmlFor="shareToBeTransferred">Share To Be Transferred (%)</label>
           <input
-            type="text"
+            type="number"
             id="shareToBeTransferred"
             name="shareToBeTransferred"
-            value={formData.shareToBeTransferred}
-            onChange={handleChange}
+            value={formData.shareToBeTransferred || ''}
+            onChange={(e) => {
+              const value = parseFloat(e.target.value);
+              if (value >= 0 && value <= 100) {
+                handleChange(e);
+              }
+            }}
+            placeholder="Enter share to be transferred (0-100)"
+            min="0"
+            max="100"
+            step="0.01"
             required
           />
+          <small>Enter the share to be transferred as a percentage (e.g., 25 for 25%).</small>
         </div>
         <div className="form-group">
           <label htmlFor="transactionBackground">Transaction Background</label>
@@ -234,7 +244,7 @@ const AboutYourBusiness = ({ onComplete }) => {
             type="text"
             id="revenue"
             name="revenue"
-            value={formatCurrency(formData.revenue)}
+            value={formatCurrency(formData.revenueEUR)}
             onChange={handleCurrencyChange}
             required
           />
@@ -245,7 +255,7 @@ const AboutYourBusiness = ({ onComplete }) => {
             type="text"
             id="cashflow"
             name="cashflow"
-            value={formatCurrency(formData.cashflow)}
+            value={formatCurrency(formData.cashflowEUR)}
             onChange={handleCurrencyChange}
             required
           />

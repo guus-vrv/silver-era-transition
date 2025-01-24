@@ -1,0 +1,52 @@
+/* General styles for the popup overlay */
+.popup-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  /* Styles for the popup content */
+  .popup-content {
+    max-width: 100vw;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+
+  .close-popup {
+    display: flex;
+    justify-self: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  /* Animation for popup appearance */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Styles for the close button */
+  .close-popup-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .close-popup-button:hover {
+    color: #ca0000; /* Red color on hover */
+  }
+  

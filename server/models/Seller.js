@@ -170,12 +170,12 @@ const sellerSchema = new mongoose.Schema({
         required: false,
         default: null
     },
-    revenue: {
+    revenueEUR: {
         type: Number,
         required: false,
         default: null
     },
-    cashflow: {
+    cashflowEUR: {
         type: Number,
         required: false,
         default: null
@@ -191,7 +191,8 @@ const sellerSchema = new mongoose.Schema({
         default: ''
     },
     completedPages: {type: Array, required: false, default: []},
-    filters: {type: Array, required: false, default: []}
+    filters: {type: Array, required: false, default: []},
+    reachCount: {type: Number, required: false, default: 5},
 }, { timestamps: true });
 
 sellerSchema.set('toJSON', {

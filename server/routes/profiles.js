@@ -391,7 +391,6 @@ router.get('/discover', authMiddleware, async (req, res) => {
   try {
       const id = req.userId;
 
-    
       // Validate the userId format if necessary
       if (!id.match(/^[0-9a-fA-F]{24}$/)) {
           return res.status(400).json({ message: 'Invalid userId format' });
@@ -473,6 +472,54 @@ router.get('/discover', authMiddleware, async (req, res) => {
               filterConditions.buyerIndustry = {$in: f.value};
             }
         }
+
+        // seller filters for buyers
+
+        if (f.filter === "Sales Volume")
+          {
+            filterConditions.salesVolumeEUR = {$gte: parseInt(f.value[0]), $lte: parseInt(f.value[1])};
+            console.log('filterConditions', filterConditions);
+          }
+
+          if (f.filter === "Share To Be Transferred") {
+            // Split the value at the "-" to get minValue and maxValue
+            const [minValue, maxValue] = f.value[0].split('-');
+          
+            // Remove the "%" symbol and parse the values as integers
+            filterConditions.shareToBeTransferred = {
+              $gte: parseInt(minValue), // minValue (without %)
+              $lte: parseInt(maxValue.replace('%', '')) // maxValue (remove % and parse)
+            };
+          }
+
+        if (f.filter === "Result")
+        {
+          filterConditions.resultEUR = {$gte: parseInt(f.value[0]), $lte: parseInt(f.value[1])};
+        }
+        if (f.filter === "Employees")
+        {
+          filterConditions.employees = {$gte: parseInt(f.value[0]), $lte: parseInt(f.value[1])};
+        }
+
+        if (f.filter === "Profit Margin") {
+          // Split the value at the "-" to get minValue and maxValue
+          const [minValue, maxValue] = f.value[0].split('-');
+        
+          // Remove the "%" symbol and parse the values as integers
+          filterConditions.profitMargin = {
+            $gte: parseInt(minValue), // minValue (without %)
+            $lte: parseInt(maxValue.replace('%', '')) // maxValue (remove % and parse)
+          };
+        }
+
+        if (f.filter === "Revenue")
+        {
+          filterConditions.revenueEUR = {$gte: parseInt(f.value[0]), $lte: parseInt(f.value[1])};
+        }
+        if (f.filter === "Cash Flow")
+        {
+          filterConditions.cashflowEUR = {$gte: parseInt(f.value[0]), $lte: parseInt(f.value[1])};
+        }
       });
 
       // next - filter profiles based on given filters
@@ -486,7 +533,6 @@ router.get('/discover', authMiddleware, async (req, res) => {
           { $sample: { size: 1 } } // Randomly select one profile
         ]);
 
-        console.log('Profile', profile);
       }
       else if (user.role === 'seller')
       {
@@ -502,12 +548,75 @@ router.get('/discover', authMiddleware, async (req, res) => {
         return res.status(404).json({ message: 'No profiles available' });
       }
 
+      
+
     // Send the selected profile data as a response
       res.status(200).json(profile[0]);
   } catch (error) {
       console.error('Error retrieving profile:', error);
       res.status(500).json({ message: 'Server error while retrieving profile' });
   }
+});
+
+router.get('/view/:profileId', authMiddleware, async (req, res) => {
+  try {
+      const id = req.params.profileId;
+
+      // Validate the userId format if necessary
+      if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+          return res.status(400).json({ message: 'Invalid userId format' });
+      }
+
+      let user = await User.findOne({ _id: id });
+
+      let profile = null;
+
+      if (user.role === 'buyer')
+      {
+        profile = await Buyer.findOne({ user: id }).populate('user'); // Populates the user field if needed
+      }
+      else if (user.role === 'seller')
+      {
+        profile = await Seller.findOne({ user: id }).populate('user'); // Populates the user field if needed
+      }
+
+      if (!profile) {
+          return res.status(404).json({ message: 'Profile not found for the given userId' });
+      }
+
+      // Send the profile data as a response
+      res.status(200).json(profile);
+
+  } catch (error) {
+      console.error('Error retrieving profile:', error);
+      res.status(500).json({ message: 'Server error while retrieving profile' });
+  }
+});
+
+router.get('/saved', authMiddleware, async (req, res) => {
+
+    try {
+      const id = req.userId;
+
+      // Validate the userId format if necessary
+      if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+          return res.status(400).json({ message: 'Invalid userId format' });
+      }
+
+      const savedProfiles = await SavedProfile.find({ userId: id });
+    
+      if (!savedProfiles) {
+          return res.status(404).json({ message: 'SavedProfiles not found for the given userId' });
+      }
+
+      // Send the profile data as a response
+      res.status(200).json(savedProfiles.length);
+
+  } catch (error) {
+      console.error('Error retrieving profile:', error);
+      res.status(500).json({ message: 'Server error while retrieving profile' });
+  }
+
 });
 
 
@@ -545,6 +654,7 @@ router.get('/', authMiddleware, async (req, res) => {
       res.status(500).json({ message: 'Server error while retrieving profile' });
   }
 });
+
 
 
 
@@ -674,6 +784,42 @@ router.put('/', authMiddleware, async (req, res) => {
         console.error('Error updating profile:', error);
         res.status(500).json({ message: 'Server error while updating profile' });
     }
+});
+
+router.put('/update-count', authMiddleware, async (req, res) => {
+  try {
+      const id = req.userId;
+
+      // Validate the userId format if necessary
+      if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+          return res.status(400).json({ message: 'Invalid userId format' });
+      }
+
+      const user = await User.findById(id);
+
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      let profileModel = user.role === 'buyer' ? Buyer : Seller;
+
+      const profile = await profileModel.findOneAndUpdate(
+        { user: id, reachCount: { $gt: 0 } }, // Ensure reachCount is greater than 0
+        { $inc: { reachCount: -1 } }, // Decrement reachCount atomically
+        { new: true } // Return the updated document
+      ).populate('user');
+  
+      if (!profile) {
+        return res.status(400).json({ message: 'Unable to update reachCount. Either profile not found or reachCount is already 0.' });
+      }
+      
+      // Send the profile data as a response
+      res.status(200).json(profile);
+
+  } catch (error) {
+      console.error('Error retrieving profile:', error);
+      res.status(500).json({ message: 'Server error while retrieving profile' });
+  }
 });
 
 module.exports = router;

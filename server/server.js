@@ -3,6 +3,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors'); // to handle cross origin requests
 const path = require('path');
+const resetReachCountJob = require('./scripts/resetReachCount');
 
 
 const app = express();

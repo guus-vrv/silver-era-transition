@@ -1,0 +1,96 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+  }
+  
+  .room-card {
+    flex: 1 1 calc(50% - 16px); /* Two cards per row */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .room-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .room-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .room-info {
+    font-size: 12px;
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+
+/* BUYER / SELLER DASHBOARD */
+
+.dashboard-page {
+  text-align: center;
+  padding: 16px;
+}
+
+.dashboard-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.profile-completion, .saved-profiles, .filters {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profile-completion:hover, .saved-profiles:hover, .filters:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  background-color: rgba(207, 207, 207, 0.214);
+}
+
+.dashboard-page a {
+  text-decoration: underline;
+  color: #007bff;
+  transition: color 0.2s;
+}
+
+.dashboard-page a:hover {
+  color: #0056b3;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+}

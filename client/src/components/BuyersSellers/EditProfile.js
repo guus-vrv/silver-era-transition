@@ -22,7 +22,14 @@ const EditProfile = () => {
   const fetchCompletion = async() => {
     try {
       const res = await axiosInstance.get(`${API_URL}/api/profiles`);
-      setProgress(Math.floor(res.data.completedPages.length * (1/3) * 100)); // percentage of pages complete in my profile section
+      if (role === 'seller')
+        {
+          setProgress(Math.floor(res.data.completedPages.length * (1/4) * 100)); // percentage of pages complete in my profile section
+        } 
+        if (role === 'buyer')
+          {
+            setProgress(Math.floor(res.data.completedPages.length * (1/3) * 100)); // percentage of pages complete in my profile section
+          } 
     }
     catch (err)
     {
@@ -95,11 +102,6 @@ const EditProfile = () => {
   return (
 
     <div>
-
-
-
-
-      <h2 style={{textAlign: 'center', padding: '20px'}}>Edit Profile</h2>
 
       <div className="edit-profile-container">
         {/* Left Box (20%) */}

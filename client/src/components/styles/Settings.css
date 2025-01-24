@@ -44,7 +44,7 @@
   }
 
   .submit-button {
-    background-color: #007bff;
+    background-color: #024d3f;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -54,7 +54,7 @@
   }
   
   .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #2e4646; 
   }
   
   .divider {

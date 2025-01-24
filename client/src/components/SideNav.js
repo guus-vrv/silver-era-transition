@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon component
-import { faHome, faUser, faBookmark, faInfoCircle, faEnvelope, faSearch, faRightFromBracket, faGauge, faBug } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
+import { faHome, faUser, faBookmark, faInfoCircle, faEnvelope, faSearch, faRightFromBracket, faGauge, faBug, faBook } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 import './styles/SideNav.css'; // Add custom CSS for the sidebar
 import customIcon from '../images/set-logo.webp';
 
@@ -51,19 +51,21 @@ const SideNav = () => {
       </div>
       
       {/* App name */}
+      <div className='menu'>
+
       <ul>
         <li>
           <Link to="/dashboard"><FontAwesomeIcon icon={faGauge} /> <span className='menu-link'>Dashboard</span></Link>
         </li>
         {role !== 'broker' && (
           <li>
-          <Link to="/discover"> <FontAwesomeIcon icon={faSearch} /> <span className='menu-link'>Discover Profiles</span></Link>
+          <Link to="/discover"> <FontAwesomeIcon icon={faSearch} /> <span className='menu-link'>Discover</span></Link>
         </li>
         )}
         {role !== 'broker' && (
           <li className="dropdown">
           <span className="dropdown-toggle" onClick={() => toggleDropdown("revisit")}>
-            <Link><FontAwesomeIcon icon={faBookmark} /> <span className='menu-link'>Revisit Profiles</span></Link>
+            <Link><FontAwesomeIcon icon={faBookmark} /> <span className='menu-link'>Matches</span></Link>
           </span>
           <ul className={`dropdown-menu ${dropdownOpen === "revisit" ? "show" : ""}`}>
             <li><Link to="/saved" onClick={closeDropdown}>Saved Profiles</Link></li>
@@ -73,29 +75,50 @@ const SideNav = () => {
         )}
 
         <li>
-          <Link to="/inbox"><FontAwesomeIcon icon={faEnvelope} /> <span className='menu-link'>Inbox</span></Link>
+          <Link to="/inbox"><FontAwesomeIcon icon={faEnvelope} /> <span className='menu-link'>Messenger</span></Link>
         </li>
-         <li>
-          <Link to="https://docs.google.com/document/d/1mylEajDY7N8dj38b9Ou7Gu9KUbZzOBZdmWpsNMLDQLY/edit?tab=t.0" target='_blank'><FontAwesomeIcon icon={faInfoCircle} /> <span className='menu-link'>Read the SET guide</span></Link>
+
+
+        <li className="dropdown">
+          <span className="dropdown-toggle" onClick={() => toggleDropdown("revisit")}>
+          <Link><FontAwesomeIcon icon={faBook} /> <span className='menu-link'>Resources</span></Link>
+          </span>
+          <ul className={`dropdown-menu ${dropdownOpen === "revisit" ? "show" : ""}`}>
+                <li>
+                <Link to="https://docs.google.com/document/d/1mylEajDY7N8dj38b9Ou7Gu9KUbZzOBZdmWpsNMLDQLY/edit?tab=t.0" target='_blank'><FontAwesomeIcon icon={faInfoCircle} /> <span className='menu-link'>Read the SET guide</span></Link>
+              </li>
+              <li>
+                <Link to="https://forms.gle/qk2mXxxNNe2riVJm8" target='_blank'><FontAwesomeIcon icon={faBug} /> <span className='menu-link'>Report Issues</span></Link>
+              </li>
+          </ul>
         </li>
-        <li>
-          <Link to="https://forms.gle/qk2mXxxNNe2riVJm8" target='_blank'><FontAwesomeIcon icon={faBug} /> <span className='menu-link'>Report Issues</span></Link>
-        </li>
+
+
+         
+
+
+
         <li className="dropdown">
           <span className="dropdown-toggle" onClick={() => toggleDropdown("account")}>
-            <Link><FontAwesomeIcon icon={faUser} /> <span className='menu-link'>My Account</span></Link>
+            <Link><FontAwesomeIcon icon={faUser} /> <span className='menu-link'>Profile</span></Link>
           </span>
           <ul className={`dropdown-menu ${dropdownOpen === "account" ? "show" : ""}`}>
             {role !== 'broker' && <li><Link to="/edit-profile" onClick={closeDropdown}>Edit Profile</Link></li>}
             <li><Link to="/settings" onClick={closeDropdown}>Settings</Link></li>
-            <li><Link to="/login" className="logout-link" onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} style={{marginRight: '0.5rem'}} /> Logout</Link></li>
           </ul>
         </li>
        
-        
-       
+        </ul>
 
-      </ul>
+
+
+          <ul>
+            <li><Link to="/login" className="logout-link" onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} style={{marginRight: '0.5rem'}} /> <span className='menu-link'>Logout</span> </Link></li>
+          </ul>
+          
+        </div>
+
+      
     </div>
   );
 };

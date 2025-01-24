@@ -45,19 +45,10 @@ const Inbox = () => {
             <img 
               key={participant.userId} 
               src={participant.profile.profilePicture ? `${API_URL}${participant.profile.profilePicture}` : `${API_URL}/uploads/broker.png`}
-              alt={`${participant.name}'s profile`} 
               className="participant-picture"
             />
           );
         })}
-        </div>
-        <div className="group-chat-info">
-          <p><strong>Participants:</strong> {
-            
-          chat.participants.map(p => {
-            return p.userId === userId ? 'You' : p.userDetails.name;
-          }).join(', ') // Join the array of names into a string
-          }</p>
         </div>
         <button 
           className="view-group-button" 

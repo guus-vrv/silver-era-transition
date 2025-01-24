@@ -5,6 +5,9 @@ import axiosInstance from '../Auth/AxiosInstance'; // Assuming AxiosInstance is 
 import { jwtDecode as jwt_decode } from 'jwt-decode'; // if you want to keep calling it jwt_decode
 import './styles/ProfilesDisplay.css';
 import DiscoverProfile from './DiscoverProfile';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faClose } from '@fortawesome/free-solid-svg-icons'; 
+import './styles/ViewProfile.css';
 
 const API_URL = process.env.REACT_APP_API_URL; // Access the base URL from environment variable
 
@@ -13,8 +16,22 @@ const SavedProfiles = () => {
   const navigate = useNavigate();
   const [activeProfileId, setActiveProfileId] = useState(null);
   const [message, setMessage] = useState('');
-
+  const [profileView, setProfileView] = useState(null);
   const [savedProfiles, setSavedProfiles] = useState([]);
+  const [reachCount, setReachCount] = useState(0);
+
+
+  const fetchReachCount = async () => {
+      try {
+        const response = await axiosInstance.get(`${API_URL}/api/profiles`);
+        setReachCount(response.data.reachCount ? response.data.reachCount : 0);
+      }
+      catch (err) {
+        if (err.response && err.response.status === 404) {
+          console.log(err);
+        }
+      }
+    }
 
   const fetchSavedProfiles = async () => {
     try {
@@ -26,6 +43,7 @@ const SavedProfiles = () => {
   };
 
   useEffect(() => {
+    fetchReachCount();
     fetchSavedProfiles();
   }, []);
 
@@ -35,6 +53,34 @@ const SavedProfiles = () => {
 
   const closeInvite = () => {
     setActiveProfileId(null); // Clear the active profile ID to close the pop-up
+  };
+
+  const showProfile = (profileId) => {
+    setProfileView(profileId); // Clear the active profile ID to close the pop-up
+  };
+
+  const closeShowProfile = (profileId) => {
+    setProfileView(null); // Clear the active profile ID to close the pop-up
+  };
+
+
+  function getResetTime() {
+    const now = new Date(); // Current date and time
+    const currentDay = now.getDay(); // Day of the week (0 = Sunday)
+    const daysUntilSunday = (7 - currentDay) % 7; // Days left to Sunday
+
+    // Calculate the next Sunday at midnight
+    const nextSundayMidnight = new Date(now);
+    nextSundayMidnight.setDate(now.getDate() + daysUntilSunday);
+    nextSundayMidnight.setHours(0, 0, 0, 0); // Set to midnight
+
+    // Format the date as a string
+    return nextSundayMidnight.toLocaleString("en-US", {
+      weekday: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   const handleInvite = async (savedProfileId) => {
@@ -55,9 +101,12 @@ const SavedProfiles = () => {
         });
   
         setMessage('');
+
+        const res = await axiosInstance.put(`${API_URL}/api/profiles/update-count`);
   
         if (response.status === 201) {
           alert('Invitation sent successfully!');
+          fetchReachCount();
           closeInvite(); // Close the pop-up
           fetchSavedProfiles();
         } else {
@@ -69,8 +118,66 @@ const SavedProfiles = () => {
       }
     };
 
+    function getResetTime() {
+      const now = new Date(); // Current date and time
+      const currentDay = now.getDay(); // Day of the week (0 = Sunday)
+      const daysUntilSunday = (7 - currentDay) % 7; // Days left to Sunday
+  
+      // Calculate the next Sunday at midnight
+      const nextSundayMidnight = new Date(now);
+      nextSundayMidnight.setDate(now.getDate() + daysUntilSunday);
+      nextSundayMidnight.setHours(0, 0, 0, 0); // Set to midnight
+  
+      // Format the date as a string
+      return nextSundayMidnight.toLocaleString("en-US", {
+        weekday: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+    };
+  
 
-  return (
+
+    return (
+
+      <div>
+  
+        {profileView ? (
+  
+          <div className="popup-overlay" onClick={closeShowProfile}>
+            <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+              <div className='close-popup'>
+                <FontAwesomeIcon icon={faClose} style={{color: 'red'}} className="close-popup-button" onClick={closeShowProfile} />
+              </div>
+              
+              
+              <DiscoverProfile profileId={profileView} />
+            </div>
+          </div>
+        )
+        
+        : 
+        
+        (
+  
+        <div>
+  
+        {reachCount === 0 ? (
+  
+        <div className="reachouts">
+        <span>You have <strong style={{color: 'red'}}>{reachCount} invites</strong> left</span>
+        <span>Your invites reset at {getResetTime()}</span>
+        </div>) 
+  
+        : 
+  
+        (<div className="reachouts">
+        <span>You have <strong>{reachCount} invites</strong> left</span>
+        </div>)
+      
+      }
+
     <div className="profiles-container">
 
         {savedProfiles.map(profile => (
@@ -81,47 +188,25 @@ const SavedProfiles = () => {
             alt={profile.profile.name}
             className="profile-picture"
           />
-          <h3 className="profile-name">{profile.profile.name}</h3>
-          {profile.hasConnection ? (
-            <button className="invite-button" onClick={() => navigate(`/group-chat/${profile.groupChat._id}`)}>
-            View Chat
-          </button> ) : 
-          (
-            activeProfileId !== profile.profile.user ? (<button className="invite-button" onClick={() => showInvite(profile.profile.user)}>
-            Invite
-          </button>) : ''
-            
-          )}
-          
-          {activeProfileId === profile.profile.user && (
-            <div className="right-box">
-              <div className="invite-box">
-                <div className="invite-profile-container">
-                  <textarea
-                    className="invite-input"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Enter your message here..."
-                  />
-                  <button
-                    className="invite-button"
-                    onClick={() => handleInvite(profile.profile.user)}
-                  >
-                    Invite to Connect
-                  </button>
-                  <button className="skip-button" onClick={closeInvite} style={{backgroundColor: 'red'}}>
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-            
+
+            <button
+              className="view-profile-button"
+              onClick={() => showProfile(profile.profile.user)}
+            >
+              View Profile
+            </button>
           
           </div>
-          
         ))}
+      </div>
+
+      </div>
+
+      )}
+
     </div>
+
+
     
   );
 };

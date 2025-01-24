@@ -121,7 +121,8 @@ const buyerSchema = new mongoose.Schema({
       default: ''  // Add default value
     },
     completedPages: {type: Array, required: false, default: []},
-    filters: {type: Array, required: false, default: []}
+    filters: {type: Array, required: false, default: []},
+    reachCount: {type: Number, required: false, default: 5},
 }, { timestamps: true });
 
 buyerSchema.set('toJSON', {

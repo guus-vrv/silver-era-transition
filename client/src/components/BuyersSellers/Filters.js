@@ -10,16 +10,32 @@ const Filters = () => {
   const [value, setValue] = useState(null);
   const [filters, setFilters] = useState([]);
   const [editMode, setEditMode] = useState(false); // edit mode means if the filter is already added, when the user clicks the filter again or clicks edit filter the filter is saved and can be changed
+  const role = localStorage.getItem('role');
 
-  const filterOptions = [
+  const filterOptions = role === 'buyer' ? [
     "Age",
     "Nationality",
     "Generic location",
     "Post Sale Involvement",
     "Timeframe",
     "Type Of Sale",
-    "Industry"
-  ];
+    "Industry",
+
+    "Sales Volume",
+    "Share To Be Transferred",
+    "Result",
+    "Employees",
+    "Profit Margin",
+    "Revenue",
+    "Cash Flow",
+
+  ] : [ "Age",
+    "Nationality",
+    "Generic location",
+    "Post Sale Involvement",
+    "Timeframe",
+    "Type Of Sale",
+    "Industry"];
 
   const fetchFilters = async () => {
     try {
@@ -38,6 +54,8 @@ const Filters = () => {
    fetchFilters();
 
 }, []);
+
+
 
 
   const handleFilterChange = (event) => {
@@ -342,6 +360,211 @@ const Filters = () => {
             
           </div>
         );
+
+        // start making changes here
+
+       case "Sales Volume":
+        return (
+          <div>
+            <label>Select Sales Volume:</label>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem'}}>
+            <input
+              type="number"
+              style={{marginBottom: '2rem'}}
+              placeholder="Min (€)"
+              value={value[0]}
+              onChange={(e) => {
+                setValue([e.target.value, value[1]]);
+              }}
+            />
+            <input
+              type="number"
+              value={value[1]}
+              placeholder="Max (€)"
+              onChange={(e) => {
+                setValue([value[0], e.target.value]);
+              }}
+            />
+            </div>
+            
+          </div>
+        );
+
+          case "Share To Be Transferred":
+            return (
+              <div>
+                <label>Select Share To Be Transferred:</label>
+                <div className='select'>
+                          {[ "0-25%", "25-50%", "50-75%", "75-100%" 
+                          // code here
+                        ].map((shareToBeTransferred) => (
+                            <div key={shareToBeTransferred} >
+                              <label>{shareToBeTransferred}</label>
+                              <input
+                                type="checkbox"
+                                value={shareToBeTransferred}
+                                checked={value.includes(shareToBeTransferred)}
+                                onChange={(e) => {
+                                  const newValue = value || [];
+                                  if (e.target.checked) {
+                                    setValue([...newValue, shareToBeTransferred]);
+                                  } else {
+                                    setValue(newValue.filter((i) => i !== shareToBeTransferred));
+                                  }
+                                }}
+                              />
+                              
+                            </div>
+                          ))}
+                          </div>
+                
+              </div>
+            );
+
+
+            case "Result":
+              return (
+                <div>
+                  <label>Select Result:</label>
+                  <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem'}}>
+                  <input
+                    type="number"
+                    style={{marginBottom: '2rem'}}
+                    placeholder="Min (€)"
+                    value={value[0]}
+                    onChange={(e) => {
+                      setValue([e.target.value, value[1]]);
+                    }}
+                  />
+                  <input
+                    type="number"
+                    value={value[1]}
+                    placeholder="Max (€)"
+                    onChange={(e) => {
+                      setValue([value[0], e.target.value]);
+                    }}
+                  />
+                  </div>
+                  
+                </div>
+              );
+              case "Employees":
+                return (
+                  <div>
+                    <label>Select Employees:</label>
+                    <div className='select'>
+                    {[ "0-10", "10-100", "100-1000" 
+                    // code here
+                  ].map((employees) => (
+                      <div key={employees} >
+                        <label>{employees}</label>
+                        <input
+                          type="checkbox"
+                          value={employees}
+                          checked={value.includes(employees)}
+                          onChange={(e) => {
+                            const newValue = value || [];
+                            if (e.target.checked) {
+                              setValue([...newValue, employees]);
+                            } else {
+                              setValue(newValue.filter((i) => i !== employees));
+                            }
+                          }}
+                        />
+                        
+                      </div>
+                    ))}
+                    </div>
+                    
+                  </div>
+                );
+    
+
+                case "Profit Margin":
+                  return (
+                    <div>
+                      <label>Select Profit Margin:</label>
+                      <div className='select'>
+                          {[ "0-25%", "25-50%", "50-75%", "75-100%" 
+                          // code here
+                        ].map((profitMargin) => (
+                            <div key={profitMargin} >
+                              <label>{profitMargin}</label>
+                              <input
+                                type="checkbox"
+                                value={profitMargin}
+                                checked={value.includes(profitMargin)}
+                                onChange={(e) => {
+                                  const newValue = value || [];
+                                  if (e.target.checked) {
+                                    setValue([...newValue, profitMargin]);
+                                  } else {
+                                    setValue(newValue.filter((i) => i !== profitMargin));
+                                  }
+                                }}
+                              />
+                              
+                            </div>
+                          ))}
+                          </div>
+                      
+                    </div>
+                  );
+
+
+                  case "Revenue":
+                    return (
+                      <div>
+                        <label>Select Revenue:</label>
+                        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem'}}>
+                        <input
+                          type="number"
+                          style={{marginBottom: '2rem'}}
+                          placeholder="Min (€)"
+                          value={value[0]}
+                          onChange={(e) => {
+                            setValue([e.target.value, value[1]]);
+                          }}
+                        />
+                        <input
+                          type="number"
+                          value={value[1]}
+                          placeholder="Max (€)"
+                          onChange={(e) => {
+                            setValue([value[0], e.target.value]);
+                          }}
+                        />
+                        </div>
+                        
+                      </div>
+                    );
+                  
+                    case "Cash Flow":
+                      return (
+                        <div>
+                          <label>Select Cash Flow:</label>
+                          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem'}}>
+                          <input
+                            type="number"
+                            style={{marginBottom: '2rem'}}
+                            placeholder="Min (€)"
+                            value={value[0]}
+                            onChange={(e) => {
+                              setValue([e.target.value, value[1]]);
+                            }}
+                          />
+                          <input
+                            type="number"
+                            value={value[1]}
+                            placeholder="Max (€)"
+                            onChange={(e) => {
+                              setValue([value[0], e.target.value]);
+                            }}
+                          />
+                          </div>
+                          
+                        </div>
+                      );
   
       default:
         return null;
@@ -372,7 +595,7 @@ const Filters = () => {
             <button className={`priority-button low ${priority === 'High' ? 'selected' : ''}`} onClick={() => handlePriorityChange('High')}>High</button>
           </div>
 
-          {editMode ? (<button className="add-filter-btn" style={{backgroundColor: 'orange'}} onClick={handleAddFilter}>Save Filter</button>) :(<button className="add-filter-btn" onClick={handleAddFilter}>Add Filter</button>) }
+          {editMode ? (<button className="add-filter-btn" style={{backgroundColor: '#424d4b'}} onClick={handleAddFilter}>Save Filter</button>) :(<button className="add-filter-btn" onClick={handleAddFilter}>Add Filter</button>) }
 
           
         </div>
@@ -392,16 +615,20 @@ const Filters = () => {
             <div className='filter-field'> 
               <label className="filter-label">Values: </label> 
                 {filter.value.map((v, index) => {
-                  if (filter.filter == "Age")
-                  {
-                    if (index == filter.value.length - 1)
-                      {
-                        return ( <div>Max: {v}</div> )
-                      }
-                      else{
-                        return ( <div>Min: {v}, </div> )
-                      }
+                 if (["Sales Volume", "Cashflow", "Result", "Revenue"].includes(filter.filter)) {
+                  const formattedValue = `€${Number(v).toLocaleString()}`;
+                  if (index == filter.value.length - 1) {
+                    return <div>Max: {formattedValue}</div>;
+                  } else {
+                    return <div>Min: {formattedValue}, </div>;
                   }
+                } else if (filter.filter === "Age") {
+                  if (index == filter.value.length - 1) {
+                    return <div>Max: {v}</div>;
+                  } else {
+                    return <div>Min: {v}, </div>;
+                  }
+                }
                   else
                   {
                     if (index == filter.value.length - 1)
@@ -416,9 +643,9 @@ const Filters = () => {
                  
               }) }
             </div>
-              <button className="button" onClick={(e) => handleEditFilter(e, filter, index)}>Edit Filter</button>
+              <button className="add-filter-btn" onClick={(e) => handleEditFilter(e, filter, index)}>Edit Filter</button>
 
-              <button className="button" onClick={() => handleDeleteFilter(index)}>Delete Filter</button>
+              <button className="delete-filter-btn" style={{color:'red'}} onClick={() => handleDeleteFilter(index)}>Delete Filter</button>
         </div>
 
       ))}

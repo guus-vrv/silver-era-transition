@@ -12,7 +12,6 @@ const PreviewProfile = () => {
             type: String,
             default: ''
         },
-        name: '', // Preview URL for the uploaded picture
         lastName: '',
         introduceYourself: '',
         backgroundExperience: '',
@@ -23,6 +22,7 @@ const PreviewProfile = () => {
   const [error, setError] = useState(null); // State for error handling
 
   useEffect(() => {
+    
     const fetchProfile = async () => {
         try {
             const res = await axiosInstance.get(`${API_URL}/api/profiles`);
@@ -42,6 +42,7 @@ const PreviewProfile = () => {
     };
 
     fetchProfile();
+    
 }, []);
 
   if (error) {
@@ -62,11 +63,12 @@ const PreviewProfile = () => {
                   <img src={profile.profilePicturePreview} alt="Profile" className="profile-picture" />
                   )}
               </div>
-              <h2 className="user-name">{profile.name} {profile.lastName}</h2>
-              <button className="save-profile" >
+             
+             <button className="save-profile" >
                 <FontAwesomeIcon icon={faCheck} style={{color: 'green'}}/>
                   
               </button>
+             
             </div>
           </div>
 

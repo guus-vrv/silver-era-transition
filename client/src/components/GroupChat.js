@@ -4,6 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from './Auth/AxiosInstance';
 import './styles/GroupChat.css';
+import './BuyersSellers/styles/ProfilesDisplay.css';
+import DiscoverProfile from './BuyersSellers/DiscoverProfile';
+import './BuyersSellers/styles/ViewProfile.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faClose } from '@fortawesome/free-solid-svg-icons'; 
 
 const API_URL = process.env.REACT_APP_API_URL; // Your API base URL
 
@@ -11,6 +16,8 @@ const GroupChat = ({ groupChatId }) => {
   const params = useParams();
   const groupId = groupChatId || params.groupId;
   const navigate = useNavigate();
+
+  const [profileView, setProfileView] = useState(null);
 
   const [participants, setParticipants] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -68,27 +75,77 @@ const GroupChat = ({ groupChatId }) => {
     return sender;
   };
 
+  // For preview of profiles when clicking on profile picture
+
+  const showProfile = (profileId) => {
+    setProfileView(profileId); // Clear the active profile ID to close the pop-up
+  };
+
+  const closeShowProfile = (profileId) => {
+    setProfileView(null); // Clear the active profile ID to close the pop-up
+  };
+
+
   return (
 
-    <div>
+    <div className='group-chat-container'>
 
-    <div className="group-chat">
+      <button 
+          className="back-group-button" 
+          onClick={() => navigate('/inbox')}
+        >
+          Back to Groups
+        </button>
+
+    {profileView ? (
+      
+      <div className="popup-overlay" onClick={closeShowProfile}>
+        <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+          <div className='close-popup'>
+                          <FontAwesomeIcon icon={faClose} style={{color: 'red'}} className="close-popup-button" onClick={closeShowProfile} />
+           </div>
+          <DiscoverProfile profileId={profileView} />
+        </div>
+      </div>
+    )
+
+    : 
+
+    (
+        <div className="group-chat">
+
       <div className="chat-container">
+      
+
         <div className="participants">
           {participants.map((participant) => (
             <div key={participant.userId} className="participant">
-              <img
+              {console.log('Info: ', participant)}
+              {
+              
+              participant.userDetails.role === 'broker' ? 
+
+              (<img
                 src={participant.profile.profilePicture ? `${API_URL}${participant.profile.profilePicture}` : `${API_URL}/uploads/broker.png`}
-                alt={participant.userDetails.name}
-              />
-              <span>{participant.userDetails.name}</span>
+              />)
+
+              :
+              
+              (<img
+                src={participant.profile.profilePicture ? `${API_URL}${participant.profile.profilePicture}` : `${API_URL}/uploads/broker.png`}
+                onClick={() => showProfile(participant.userId)}
+              />) 
+              
+              
+              }
+              
             </div>
           ))}
         </div>
         <div className="message-list">
           {messages.map((msg) => {
             const senderDetails = getSenderDetails(msg.sender);
-            const senderName = msg.sender === userId ? 'You' : senderDetails.userDetails.name;
+            const senderName = msg.sender === userId ? 'You' : 'Anonymous';
             return (
               <div key={msg._id} className="message">
                 <strong>{senderName}: </strong>
@@ -130,9 +187,11 @@ const GroupChat = ({ groupChatId }) => {
     </div>
 
    
+      )}
 
     </div>
 
+   
 
   );
 

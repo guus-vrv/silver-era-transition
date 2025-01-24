@@ -45,7 +45,7 @@
 
 .login-button {
     padding: 10px;
-    background-color: #28a3a7;
+    background-color: #024d3f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -54,7 +54,7 @@
 }
 
 .login-button:hover {
-    background-color: #21885f;
+    background-color: #2e4646;
 }
 
 .register-link {
@@ -101,7 +101,7 @@
 
 .submit-button {
     padding: 10px; /* Padding inside the button */
-    background-color: #28a745; /* Green background */
+    background-color: #024d3f; /* Green background */
     color: white; /* White text */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */
@@ -110,5 +110,5 @@
 }
 
 .submit-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #2e4646; /* Darker green on hover */
 }

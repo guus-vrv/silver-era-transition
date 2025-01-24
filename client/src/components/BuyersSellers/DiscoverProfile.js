@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/DiscoverProfile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import Tooltip from "@mui/material/Tooltip";
 import { faBookmark, faCheck } from '@fortawesome/free-solid-svg-icons'; 
 import axiosInstance from '../Auth/AxiosInstance';
 
+
 const API_URL = process.env.REACT_APP_API_URL; // Access the base URL from environment variable
 
-const DiscoverProfile = () => {
+const DiscoverProfile = ({profileId}) => {
 
   const [error, setError] = useState(null); // State for error handling
   const [profilesFound, setProfilesFound] = useState(false);
@@ -19,13 +21,14 @@ const DiscoverProfile = () => {
 
   const navigate = useNavigate();
 
+  const [reachCount, setReachCount] = useState(0);
+
   const [profile, setProfile] = useState({
     profilePicture: {
       type: String,
       default: ''
     },
     profilePicturePreview: '',
-    name: '',
     user: '',
     lastName: '',
     introduceYourself: '',
@@ -45,11 +48,23 @@ const DiscoverProfile = () => {
     revenue: '',
     cashflow: '',
     customerBase: '',
-    companyCulture: ''
+    companyCulture: '',
   });
   
 
   const [message, setMessage] = useState('');
+
+  const fetchReachCount = async () => {
+    try {
+      const response = await axiosInstance.get(`${API_URL}/api/profiles`);
+      setReachCount(response.data.reachCount ? response.data.reachCount : 0);
+    }
+    catch (err) {
+      if (err.response && err.response.status === 404) {
+        console.log(err);
+      }
+    }
+  }
 
   const fetchFilters = async () => {
     try {
@@ -84,10 +99,36 @@ const DiscoverProfile = () => {
   };
 
   useEffect(() => {
+
+      fetchReachCount();
       
       fetchFilters();
 
-      fetchProfile();
+      if (profileId) {
+        const fetchOtherProfile = async () => {
+          try {
+              const res = await axiosInstance.get(`${API_URL}/api/profiles/view/${profileId}`);
+              const profilePictureUrl = res.data.profilePicture ? `${API_URL}${res.data.profilePicture}` : ''; // Construct full URL
+              setProfile(res.data);
+              setProfile((prev) => ({
+                  ...prev,
+                  profilePicturePreview: profilePictureUrl, // Set initial preview from fetched data
+                }));
+          } catch (err) {
+              if (err.response && err.response.status === 404) {
+                  alert('No profile information found for this user.');
+              } else {
+                  alert('Error retrieving profile data.');
+              }
+          }
+      };
+        fetchOtherProfile();
+      }
+      else
+      {
+        fetchProfile();
+      }
+     
 
   }, []);
 
@@ -125,8 +166,11 @@ const DiscoverProfile = () => {
 
       setMessage('');
 
+      const res = await axiosInstance.put(`${API_URL}/api/profiles/update-count`);
+
       if (response.status === 201) {
         alert('Invitation sent successfully!');
+        fetchReachCount();
         fetchProfile();
       } else {
         alert(`Failed to send invitation: ${response.data.error}`);
@@ -221,9 +265,28 @@ const handleSkip = async (receiverId) => {
 
 };
 
+  function getResetTime() {
+    const now = new Date(); // Current date and time
+    const currentDay = now.getDay(); // Day of the week (0 = Sunday)
+    const daysUntilSunday = (7 - currentDay) % 7; // Days left to Sunday
+
+    // Calculate the next Sunday at midnight
+    const nextSundayMidnight = new Date(now);
+    nextSundayMidnight.setDate(now.getDate() + daysUntilSunday);
+    nextSundayMidnight.setHours(0, 0, 0, 0); // Set to midnight
+
+    // Format the date as a string
+    return nextSundayMidnight.toLocaleString("en-US", {
+      weekday: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
   return (
     <div>
-      {profilesFound ? (
+      {profileId || profilesFound ? (
       <div className="discover-profile-container">
           <div className="top-container">
             <div className="profile-box">
@@ -232,7 +295,6 @@ const handleSkip = async (receiverId) => {
                   <img src={profile.profilePicturePreview} alt="Profile" className="profile-picture" />
                   )}
               </div>
-              <h2 className="user-name">{profile.name} {profile.lastName}</h2>
               <button className="save-profile" onClick={() => handleBookmark(profile.user)}>
                 {bookmarked ? <FontAwesomeIcon icon={faCheck} style={{color: 'green'}}/> : <FontAwesomeIcon icon={faBookmark} style={{color: '#385454'}} /> }
                   
@@ -243,7 +305,7 @@ const handleSkip = async (receiverId) => {
           <div className="bottom-container">
             <div className="left-box">
               <div className="info-box">
-                <h3>About</h3>
+                <h3 style={{fontWeight: 'bold'}}>About</h3>
                 <p>
 
                 {truncateText(profile.introduceYourself, 'introduceYourself')}
@@ -256,7 +318,7 @@ const handleSkip = async (receiverId) => {
                 </p>
               </div>
               <div className="info-box">
-                <h3>My Background</h3>
+                <h3 style={{fontWeight: 'bold'}}>My Background</h3>
                 <p>
 
                 {truncateText(profile.backgroundExperience, 'backgroundExperience')}
@@ -269,11 +331,11 @@ const handleSkip = async (receiverId) => {
                 </p>
               </div>
               <div className="info-box">
-                <h3>Ideal Match</h3>
+                <h3 style={{fontWeight: 'bold'}}>Ideal Match</h3>
                 <p>{profile.descriptionOfIdealMatch}</p>
               </div>
               <div className="info-box">
-                <h3>Shared Interests</h3>
+                <h3 style={{fontWeight: 'bold'}}>Shared Interests</h3>
                 <p>{profile.interests}</p>
               </div>
             </div>
@@ -281,30 +343,87 @@ const handleSkip = async (receiverId) => {
             <div className="right-box">
               <div className="invite-box">
                 {/* INVITE  */}
+                {console.log('PROFILECOUNT: ', reachCount)}
+                {reachCount === 0 ? 
+                
                 <div className="invite-profile-container">
+                <h3 style={{fontWeight: 'bold'}} >You have {reachCount} invites left</h3>
+                <span>Your invites reset at {getResetTime()}</span>
+                </div>
+                : 
+                
+                <div className="invite-profile-container">
+                  <h3 style={{fontWeight: 'bold'}} >You have {reachCount} invites left</h3>
+                  <br />
                   <textarea
                     className="invite-input"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Enter your message here..."
                   />
+                  <br />
                   <button className="invite-button" onClick={() => handleInvite(profile.user)}>
                     Invite to Connect
                   </button>
+                  <br />
                   <button className="skip-button" onClick={() => handleSkip(profile.user)}>
                     Skip for Now
                   </button>
                 </div>
+                
+                }
+                
               </div>
               
               <div className="filter-box" style={{marginTop: '20px'}}>
                 <div style={{marginTop: '.5rem'}} className="filter-title">
-                  <h3>Your Filters</h3>
-                      
+
+                      <div style={{ padding: "16px" }}>
+                        <Tooltip
+                          title={
+                            <div>
+                              {filters ? filters.map((filter, index) => (
+                                <div key={index} style={{ marginBottom: "8px" }}>
+                                  <strong>Filter:</strong> {filter.filter}
+                                  <br />
+                                  <strong>Priority:</strong> {filter.priority}
+                                  <br />
+                                  <strong>Values:</strong>{" "}
+                                  {filter.value.map((v, i) => {
+                                    // Inline logic for formatting values
+                                    if (
+                                      ["Sales Volume", "Cashflow", "Result", "Revenue"].includes(filter.filter)
+                                    ) {
+                                      const formattedValue = `€${Number(v).toLocaleString()}`;
+                                      return i === filter.value.length - 1
+                                        ? `Max: ${formattedValue}`
+                                        : `Min: ${formattedValue}, `;
+                                    } else if (filter.filter === "Age") {
+                                      return i === filter.value.length - 1
+                                        ? `Max: ${v}`
+                                        : `Min: ${v}, `;
+                                    } else {
+                                      return i === filter.value.length - 1 ? `${v}` : `${v}, `;
+                                    }
+                                  })}
+                                </div>
+                              )) : <div>No filters found</div>}
+                            </div>
+                          }
+                          arrow
+                        >
+                          <button
+                            className='show-filters'
+                          >
+                            View Filters
+                          </button>
+                        </Tooltip>
+                      </div>
+                                    
+
                 </div>
               
-                
-                <button className="button" onClick={() => navigate('/filters')}> Edit Filters</button>
+              
               </div>
 
               {role === 'buyer' && profile.business && (
@@ -314,8 +433,9 @@ const handleSkip = async (receiverId) => {
                     <p><strong>{profile.business} in {profile.businessLocation}</strong></p>
                     <p><strong>Sales Volume:</strong> €{profile.salesVolumeEUR}</p>
                     <p><strong>Result:</strong> €{profile.resultEUR}</p>
+                    <p><strong>Profit Margin:</strong> {profile.profitMargin}%</p>
                     <p><strong>Employees:</strong> {profile.employees}</p>
-                    <p><strong>Share to Be Transferred:</strong> {profile.shareToBeTransferred}</p>
+                    <p><strong>Share to Be Transferred:</strong> {profile.shareToBeTransferred}%</p>
                     <p><strong>Transaction Background:</strong> {profile.transactionBackground}</p>
                     <p><strong>Product Market Fit:</strong> {profile.productMarketFit}</p>
                     <p><strong>Value Proposition:</strong> {profile.valueProposition}</p>
